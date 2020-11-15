@@ -40,7 +40,7 @@ jnigen {
         cFlags += " -fvisibility=hidden "
 
         cppIncludes = ["*.cpp", "src/box2d-2.4.1/src/**/*.cpp" ]
-        cppFlags += " -std=c++11 -stdlib=libc++ -fvisibility=hidden "
+        cppFlags += " -std=c++11 -fvisibility=hidden "
     }
 
     add(Windows, x32)
