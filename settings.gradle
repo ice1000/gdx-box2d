@@ -1,0 +1,9 @@
+rootProject.name = 'gdx-box2d'
+
+include ':gdx-box2d-core'
+
+include ':gdx-box2d-test:core'
+// TODO: Figure out why this causes dependency resolution issues in core (IDEA)
+include ':gdx-box2d-test:android'
+include ':gdx-box2d-test:desktop'
+include ':gdx-box2d-test:ios'

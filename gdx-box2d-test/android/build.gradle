@@ -1,0 +1,100 @@
+import box2d.Deps
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.0.1"
+    }
+}
+
+apply plugin: 'com.android.application'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+repositories {
+    google()
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+}
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId 'com.badlogic.gdx.physics.box2d.test'
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode = 1
+        versionName = '1.0'
+    }
+}
+
+configurations {
+    natives
+}
+
+dependencies {
+    implementation project(':gdx-box2d-core')
+    implementation project(':gdx-box2d-test:core')
+
+    implementation Deps.gdx
+    implementation Deps.Android.gdx
+    natives Deps.Android.Natives.gdx
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name.contains('assemble')) {
+        task.dependsOn copyOutputs
+    }
+}
+
+task copyOutputs(dependsOn: ':gdx-box2d-core:jnigenJarNativesAndroid') {
+    doFirst {
+        file("src/main/jniLibs/armeabi/").mkdirs()
+        file("src/main/jniLibs/armeabi-v7a/").mkdirs()
+        file("src/main/jniLibs/arm64-v8a/").mkdirs()
+        file("src/main/jniLibs/x86_64/").mkdirs()
+        file("src/main/jniLibs/x86/").mkdirs()
+    }
+    doLast {
+        configurations.getByName("natives").copy().files.each { jar ->
+            copyNative(jar)
+        }
+        def t = tasks.findByPath(':gdx-box2d-core:jnigenJarNativesAndroid')
+        t.getTaskDependencies().each {it.getDependencies(t).each {
+            files(it.outputs).each {jar ->
+                copyNative(jar)
+            }
+        }}
+    }
+}
+
+def copyNative(File jar) {
+    def outputDir = null
+
+    if(jar.name.endsWith("natives-arm64-v8a.jar")) outputDir = file("src/main/jniLibs/arm64-v8a")
+    if(jar.name.endsWith("natives-armeabi-v7a.jar")) outputDir = file("src/main/jniLibs/armeabi-v7a")
+    if(jar.name.endsWith("natives-armeabi.jar")) outputDir = file("src/main/jniLibs/armeabi")
+    if(jar.name.endsWith("natives-x86_64.jar")) outputDir = file("src/main/jniLibs/x86_64")
+    if(jar.name.endsWith("natives-x86.jar")) outputDir = file("src/main/jniLibs/x86")
+
+    if(outputDir != null) {
+        copy {
+            from zipTree(jar)
+            into outputDir
+            include "*.so"
+        }
+    }
+}

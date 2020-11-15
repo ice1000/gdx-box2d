@@ -1,0 +1,37 @@
+import box2d.Deps
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath "com.mobidevelop.robovm:robovm-gradle-plugin:2.3.11"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'robovm'
+
+ext {
+	mainClassName = "com.badlogic.gdx.physics.box2d.test.IosTest"
+}
+
+build.dependsOn ':gdx-box2d-core:jnigenJarNativesIOS'
+
+launchIPhoneSimulator.dependsOn build
+launchIPadSimulator.dependsOn build
+launchIOSDevice.dependsOn build
+createIPA.dependsOn build
+
+dependencies {
+	implementation project(':gdx-box2d-core')
+	implementation project(':gdx-box2d-test:core')
+
+	implementation Deps.gdx
+	implementation Deps.IOS.gdx
+	implementation Deps.IOS.Natives.gdx
+
+	implementation Deps.IOS.robovm
+
+	implementation fileTree(dir: "${project(':gdx-box2d-core').buildDir}/libs", includes: ["gdx-box2d-core-natives-ios.jar"])
+}

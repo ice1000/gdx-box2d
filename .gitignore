@@ -1,0 +1,11 @@
+# Ignore IDE specific
+.idea
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+# Ignore machine specific properties
+local.properties

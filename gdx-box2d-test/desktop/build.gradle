@@ -1,0 +1,30 @@
+import box2d.Deps
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':gdx-box2d-core')
+    implementation project(':gdx-box2d-test:core')
+
+    implementation Deps.gdx
+    implementation Deps.Desktop.gdx
+    implementation Deps.Desktop.Natives.gdx
+
+    implementation fileTree(dir: "${project(':gdx-box2d-core').projectDir}/build/libs", includes: ["gdx-box2d-core-natives-dektop.jar"])
+}
+
+task testDesktop(dependsOn: ':gdx-box2d-core:jnigenJarNativesDesktop', type: JavaExec) {
+    main = "com.badlogic.gdx.physics.box2d.DesktopTest"
+
+    classpath += files(tasks.getByPath(':gdx-box2d-core:jnigenJarNativesDesktop').outputs)
+    classpath += sourceSets.main.runtimeClasspath
+
+    if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+        // Required to run lwjgl java apps on Mac OSX
+        jvmArgs = ["-XstartOnFirstThread"]
+    }
+}
