@@ -27,8 +27,8 @@ jobs:
           java-version: 1.8
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Build with Gradle
-        run: ./gradlew jnigen jnigenBuild
+      - name: Build natives with Gradle
+        run: ./gradlew :gdx-box2d-core:jnigen :gdx-box2d-core:jnigenBuild
       - name: Upload macOS/iOS natives
         uses: actions/upload-artifact@v2.1.4
         with:
@@ -78,11 +78,10 @@ jobs:
           path: gdx-box2d-core/libs
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Build with Gradle
-        run: ./gradlew jnigen jnigenBuild
-      - name: Publish to maven
-        if: ${{ github.event_name == 'push' }}
-        run: ./gradlew publish
+      - name: Build natives with Gradle
+        run: ./gradlew :gdx-box2d-core:jnigen :gdx-box2d-core:jnigenBuild
+      - name: Build Java with Gradle
+        run: ./gradlew :gdx-box2d-core:build
       - name: Upload all output libs
         uses: actions/upload-artifact@v2.1.4
         with:
