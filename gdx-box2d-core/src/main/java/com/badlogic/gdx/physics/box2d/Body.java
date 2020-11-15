@@ -70,7 +70,7 @@ public class Body {
 	 * @param def the fixture definition.
 	 * @warning This function is locked during callbacks. */
 	public Fixture createFixture (FixtureDef def) {
-		long fixtureAddr = jniCreateFixture(addr, def.shape.addr, def.friction, def.restitution, def.density, def.isSensor,
+		long fixtureAddr = jniCreateFixture(addr, def.shape.addr, def.friction, def.restitution, def.restitutionThreshold, def.density, def.isSensor,
 			def.filter.categoryBits, def.filter.maskBits, def.filter.groupIndex);
 		Fixture fixture = this.world.freeFixtures.obtain();
 		fixture.reset(this, fixtureAddr);
@@ -79,7 +79,7 @@ public class Body {
 		return fixture;
 	}
 
-	private native long jniCreateFixture (long addr, long shapeAddr, float friction, float restitution, float density,
+	private native long jniCreateFixture (long addr, long shapeAddr, float friction, float restitution, float restitutionThreshold, float density,
 		boolean isSensor, short filterCategoryBits, short filterMaskBits, short filterGroupIndex); /*
 	b2Body* body = (b2Body*)addr;
 	b2Shape* shape = (b2Shape*)shapeAddr;
@@ -88,6 +88,7 @@ public class Body {
 	fixtureDef.shape = shape;
 	fixtureDef.friction = friction;
 	fixtureDef.restitution = restitution;
+	fixtureDef.restitutionThreshold = restitutionThreshold;
 	fixtureDef.density = density;
 	fixtureDef.isSensor = isSensor;
 	fixtureDef.filter.maskBits = filterMaskBits;

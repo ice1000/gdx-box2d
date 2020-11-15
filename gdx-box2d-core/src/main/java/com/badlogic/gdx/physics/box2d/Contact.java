@@ -213,6 +213,37 @@ public class Contact {
 		contact->ResetRestitution();
 	*/
 
+	/** Override the default restitution mixture. You can call this in b2ContactListener::PreSolve. The value persists until you set
+	 * or reset. */
+	public void setRestitutionThreshold (float restitutionThreshold) {
+		jniSetRestitutionThreshold(addr, restitutionThreshold);
+	}
+
+	private native void jniSetRestitutionThreshold (long addr, float restitutionThreshold); /*
+	  	b2Contact* contact = (b2Contact*)addr;
+		contact->SetRestitutionThreshold(restitutionThreshold);
+	*/
+
+	/** Get the restitution threshold. */
+	public float getRestitutionThreshold () {
+		return jniGetRestitutionThreshold(addr);
+	}
+
+	private native float jniGetRestitutionThreshold (long addr); /*
+	  	b2Contact* contact = (b2Contact*)addr;
+		return contact->GetRestitutionThreshold();
+	*/
+
+	/** Reset the restitution threshold to the default value. */
+	public void ResetRestitutionThreshold () {
+		jniResetRestitutionThreshold(addr);
+	}
+
+	private native void jniResetRestitutionThreshold (long addr); /*
+	  	b2Contact* contact = (b2Contact*)addr;
+		contact->ResetRestitutionThreshold();
+	*/
+
 	/** Get the tangent speed. */
 	public float getTangentSpeed () {
 		return jniGetTangentSpeed(addr);

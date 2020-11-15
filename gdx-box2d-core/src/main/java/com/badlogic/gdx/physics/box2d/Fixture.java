@@ -301,6 +301,26 @@ public class Fixture {
 		fixture->SetRestitution(restitution);
 	*/
 
+	/** Set the restitution velocity threshold. This will not change the restitution threshold of existing contacts. */
+	public void setRestitutionThreshold (float restitutionThreshold) {
+		jniSetRestitutionThreshold(addr, restitutionThreshold);
+	}
+
+	private native void jniSetRestitutionThreshold (long addr, float restitutionThreshold); /*
+		b2Fixture* fixture = (b2Fixture*)addr;
+		fixture->SetRestitutionThreshold(restitutionThreshold);
+	*/
+
+	/** Get the restitution velocity threshold. */
+	public float getRestitutionThreshold () {
+		return jniGetRestitutionThreshold(addr);
+	}
+
+	private native float jniGetRestitutionThreshold (long addr); /*
+		b2Fixture* fixture = (b2Fixture*)addr;
+		return fixture->GetRestitutionThreshold();
+	*/
+
 // /// Get the fixture's AABB. This AABB may be enlarge and/or stale.
 // /// If you need a more accurate AABB, compute it using the shape and
 // /// the body transform.
