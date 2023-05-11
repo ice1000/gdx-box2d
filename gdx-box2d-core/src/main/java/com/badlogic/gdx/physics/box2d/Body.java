@@ -419,8 +419,7 @@ public class Body {
 
 	private native void jniGetMassData (long addr, float[] massData); /*
 		b2Body* body = (b2Body*)addr;
-		b2MassData m;
-		body->GetMassData(&m);
+		b2MassData m = body->GetMassData();
 		massData[0] = m.mass;
 		massData[1] = m.center.x;
 		massData[2] = m.center.y;
