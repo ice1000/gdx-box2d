@@ -1,15 +1,11 @@
 import box2d.Deps
 
 buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
-    dependencies {
-        classpath "com.badlogicgames.gdx:gdx-jnigen-gradle:2.3.1"
-    }
+  repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+  }
+  dependencies { classpath "com.badlogicgames.gdx:gdx-jnigen-gradle:2.3.1" }
 }
 
 apply plugin: 'java-library'
@@ -17,61 +13,49 @@ apply plugin: 'java-library'
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation Deps.gdx
-}
-
+repositories { mavenCentral() }
+dependencies { implementation Deps.gdx }
 apply plugin: "com.badlogicgames.gdx.gdx-jnigen"
 
 jnigen {
+  sharedLibName = "gdx-box2d"
 
-    sharedLibName = "gdx-box2d"
+  all {
+    headerDirs = ["src/box2d-2.4.1/include"]
+    cIncludes = ["*.c", "src/box2d-2.4.1/src/**/*.c"]
+    cFlags += " -fvisibility=hidden "
+    cppIncludes = ["*.cpp", "src/box2d-2.4.1/src/**/*.cpp"]
+    cppFlags += " -fvisibility=hidden -std=c++11 "
+  }
 
-    all {
-        headerDirs = [
-                "src/box2d-2.4.1/include"
-        ]
-
-        cIncludes = ["*.c", "src/box2d-2.4.1/src/**/*.c"]
-        cFlags += " -fvisibility=hidden "
-
-        cppIncludes = ["*.cpp", "src/box2d-2.4.1/src/**/*.cpp"]
-        cppFlags += " -fvisibility=hidden -std=c++11 "
-    }
-
-    add(Windows, x32)
-    add(Windows, x64)
-    add(Linux, x32)
-    add(Linux, x64)
-    add(Linux, x32, ARM)
-    add(Linux, x64, ARM)
-    add(MacOsX, x64)
-    add(Android)
-    add(IOS) {
-        cppFlags += " -stdlib=libc++ "
-    }
+  add(Windows, x32)
+  add(Windows, x64)
+  add(Linux, x32)
+  add(Linux, x64)
+  add(Linux, x32, ARM)
+  add(Linux, x64, ARM)
+  add(MacOsX, x64)
+  add(Android)
+  add(IOS) {
+    cppFlags += " -stdlib=libc++ "
+  }
 
 }
 
 clean.doFirst {
-    delete fileTree("jni") {
-        include "jni-headers"
-        include "target"
-        include "build*.xml"
-        include "*.c"
-        include "*.cpp"
-        include "*.h"
-        include "*.mk"
-        include "robovm.xml"
-    }
-    delete "libs"
-    delete "obj"
+  delete fileTree("jni") {
+    include "jni-headers"
+    include "target"
+    include "build*.xml"
+    include "*.c"
+    include "*.cpp"
+    include "*.h"
+    include "*.mk"
+    include "robovm.xml"
+  }
+  delete "libs"
+  delete "obj"
 }
 
-jar.dependsOn jnigenBuild
-
+//jar.dependsOn jnigenBuild
 sourceSets.main.resources.srcDirs += ["libs"]
