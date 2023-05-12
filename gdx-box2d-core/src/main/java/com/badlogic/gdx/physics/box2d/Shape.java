@@ -133,15 +133,15 @@ public abstract class Shape implements Disposable {
 	*/
 
   private static final float[] verts = new float[4];
-  public void computeAABB(Vector2 lowerBound, Vector2 upperBound, Transform transform) {
-    jniComputeAABB(addr, verts, transform.vals[0], transform.vals[1], transform.vals[2], transform.vals[3]);
+  public void computeAABB(Vector2 lowerBound, Vector2 upperBound, Transform transform, int childIndex) {
+    jniComputeAABB(addr, verts, transform.vals[0], transform.vals[1], transform.vals[2], transform.vals[3], childIndex);
     lowerBound.x = verts[0];
     lowerBound.y = verts[1];
     upperBound.x = verts[2];
     upperBound.y = verts[3];
   }
 
-  private native void jniComputeAABB(long addr, float[] verts, float val, float val1, float val2, float val3); /*
+  private native void jniComputeAABB(long addr, float[] verts, float val, float val1, float val2, float val3, int ix); /*
     b2Shape* shape = (b2Shape*)addr;
     b2Transform t;
     t.p.x = val;
@@ -149,7 +149,7 @@ public abstract class Shape implements Disposable {
     t.q.c = val2;
     t.q.s = val3;
     b2AABB aabb;
-    shape->ComputeAABB(&aabb, t);
+    shape->ComputeAABB(&aabb, t, ix);
     verts[0] = aabb.lowerBound.x;
     verts[1] = aabb.lowerBound.y;
     verts[2] = aabb.upperBound.x;
