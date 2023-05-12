@@ -172,7 +172,7 @@ public abstract class Box2DTest implements ApplicationListener, InputProcessor {
 		// ask the world which bodies are within the given
 		// bounding box around the mouse pointer
 		hitBody = null;
-		world.QueryAABB(callback, testPoint.x - 0.0001f, testPoint.y - 0.0001f, testPoint.x + 0.0001f, testPoint.y + 0.0001f);
+		world.queryAABB(callback, testPoint.x - 0.0001f, testPoint.y - 0.0001f, testPoint.x + 0.0001f, testPoint.y + 0.0001f);
 
 		if (hitBody == groundBody) hitBody = null;
 

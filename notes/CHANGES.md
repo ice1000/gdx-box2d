@@ -13,3 +13,4 @@ This is an attempt to port box2d 2.4.1 to Java.
 
 0. Ported some commits from libGDX, so we have better performance, nullability protection, more APIs, etc.
 1. Removed `userData` objects from native library, because we already have them on JVM.
+2. Renamed `QueryAABB` into `queryAABB`.
