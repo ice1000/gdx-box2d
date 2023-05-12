@@ -6,7 +6,7 @@ public class RopeDef {
     public float[] masses;
     public int count;
     public RopeTuning tuning;
-    public float[] vertices;
+    public Vector2[] vertices;
     public Vector2 position;
     public Vector2 gravity;
 
