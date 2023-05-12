@@ -257,7 +257,7 @@ public class ChainLight extends Light {
   @Override
   public void setDistance(float dist) {
     dist *= RayHandler.gammaCorrectionParameter;
-    this.distance = dist < 0.01f ? 0.01f : dist;
+    this.distance = Math.max(dist, 0.01f);
     dirty = true;
   }
 
@@ -301,7 +301,7 @@ public class ChainLight extends Light {
           .sub(chain.items[i], chain.items[i + 1]);
       segmentLengths.add(v1.len());
       segmentAngles.add(
-          v1.rotate90(rayDirection).angle() * MathUtils.degreesToRadians
+          v1.rotate90(rayDirection).angleDeg() * MathUtils.degreesToRadians
       );
       remainingLength += segmentLengths.items[j];
     }
@@ -486,14 +486,14 @@ public class ChainLight extends Light {
     float minY = startY[0];
 
     for (int i = 0; i < rayNum; i++) {
-      maxX = maxX > startX[i] ? maxX : startX[i];
-      maxX = maxX > mx[i] ? maxX : mx[i];
-      minX = minX < startX[i] ? minX : startX[i];
-      minX = minX < mx[i] ? minX : mx[i];
-      maxY = maxY > startY[i] ? maxY : startY[i];
-      maxY = maxY > my[i] ? maxY : my[i];
-      minY = minY < startY[i] ? minY : startY[i];
-      minY = minY < my[i] ? minY : my[i];
+      maxX = Math.max(maxX, startX[i]);
+      maxX = Math.max(maxX, mx[i]);
+      minX = Math.min(minX, startX[i]);
+      minX = Math.min(minX, mx[i]);
+      maxY = Math.max(maxY, startY[i]);
+      maxY = Math.max(maxY, my[i]);
+      minY = Math.min(minY, startY[i]);
+      minY = Math.min(minY, my[i]);
     }
     chainLightBounds.set(minX, minY, maxX - minX, maxY - minY);
     rayHandlerBounds.set(
