@@ -132,16 +132,35 @@ public abstract class Shape implements Disposable {
 		return shape->TestPoint(t, p);
 	*/
 
+  private static final float[] verts = new float[4];
+  public void computeAABB(Vector2 lowerBound, Vector2 upperBound, Transform transform) {
+    jniComputeAABB(addr, verts, transform.vals[0], transform.vals[1], transform.vals[2], transform.vals[3]);
+    lowerBound.x = verts[0];
+    lowerBound.y = verts[1];
+    upperBound.x = verts[2];
+    upperBound.y = verts[3];
+  }
+
+  private native void jniComputeAABB(long addr, float[] verts, float val, float val1, float val2, float val3); /*
+    b2Shape* shape = (b2Shape*)addr;
+    b2Transform t;
+    t.p.x = val;
+    t.p.y = val1;
+    t.q.c = val2;
+    t.q.s = val3;
+    b2AABB aabb;
+    shape->ComputeAABB(&aabb, t);
+    verts[0] = aabb.lowerBound.x;
+    verts[1] = aabb.lowerBound.y;
+    verts[2] = aabb.upperBound.x;
+    verts[3] = aabb.upperBound.y;
+  */
+
 // /// Cast a ray against this shape.
 // /// @param output the ray-cast results.
 // /// @param input the ray-cast input parameters.
 // /// @param transform the transform to be applied to the shape.
 // virtual bool RayCast(b2RayCastOutput* output, const b2RayCastInput& input, const b2Transform& transform) const = 0;
-//
-// /// Given a transform, compute the associated axis aligned bounding box for this shape.
-// /// @param aabb returns the axis aligned box.
-// /// @param xf the world transform of the shape.
-// virtual void ComputeAABB(b2AABB* aabb, const b2Transform& xf) const = 0;
 //
 // /// Compute the mass properties of this shape using its dimensions and density.
 // /// The inertia tensor is computed about the local origin.
