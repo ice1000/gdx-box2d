@@ -23,3 +23,12 @@ dependencies {
   implementation "org.aya-prover.gdx-box2d:core:$box2dVersion"
 }
 ```
+
+## Compatibility
+
++ Java: 1.7 (let me know once RoboVM supports Java 8/11/17)
++ Ubuntu: 20.04 (if you know how to use Ubuntu 18.04 on GitHub Actions, please enlighten me)
++ libstdc++-dev: 10 (latest version supported by the Ubuntu image available)
++ macOS: latest (I cannot afford Apple products)
++ libGDX: 1.11.0
++ RoboVM: 2.3.19

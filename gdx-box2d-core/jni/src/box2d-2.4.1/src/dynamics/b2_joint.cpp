@@ -234,7 +234,7 @@ b2Joint::b2Joint(const b2JointDef* def)
 	m_index = 0;
 	m_collideConnected = def->collideConnected;
 	m_islandFlag = false;
-	m_userData = def->userData;
+//	m_userData = def->userData;
 
 	m_edgeA.joint = nullptr;
 	m_edgeA.other = nullptr;

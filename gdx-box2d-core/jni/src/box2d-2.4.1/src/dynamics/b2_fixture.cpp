@@ -43,7 +43,7 @@ b2Fixture::b2Fixture()
 
 void b2Fixture::Create(b2BlockAllocator* allocator, b2Body* body, const b2FixtureDef* def)
 {
-	m_userData = def->userData;
+//	m_userData = def->userData;
 	m_friction = def->friction;
 	m_restitution = def->restitution;
 	m_restitutionThreshold = def->restitutionThreshold;
