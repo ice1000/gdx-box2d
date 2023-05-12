@@ -168,7 +168,7 @@ b2ContactFilter defaultFilter;
   /**
    * pool for bodies
    **/
-  protected final Pool<Body> freeBodies = new Pool<Body>(100, 200) {
+  private final Pool<Body> freeBodies = new Pool<Body>(100, 200) {
     @Override
     protected Body newObject() {
       return new Body(World.this, 0);
@@ -178,7 +178,7 @@ b2ContactFilter defaultFilter;
   /**
    * pool for fixtures
    **/
-  protected final Pool<Fixture> freeFixtures = new Pool<Fixture>(100, 200) {
+  final Pool<Fixture> freeFixtures = new Pool<Fixture>(100, 200) {
     @Override
     protected Fixture newObject() {
       return new Fixture(null, 0);
@@ -188,32 +188,32 @@ b2ContactFilter defaultFilter;
   /**
    * the address of the world instance
    **/
-  protected final long addr;
+  private final long addr;
 
   /**
    * all known bodies
    **/
-  protected final LongMap<Body> bodies = new LongMap<Body>(100);
+  final LongMap<Body> bodies = new LongMap<>(100);
 
   /**
    * all known fixtures
    **/
-  protected final LongMap<Fixture> fixtures = new LongMap<Fixture>(100);
+  final LongMap<Fixture> fixtures = new LongMap<>(100);
 
   /**
    * all known joints
    **/
-  protected final LongMap<Joint> joints = new LongMap<Joint>(100);
+  private final LongMap<Joint> joints = new LongMap<>(100);
 
   /**
    * Contact filter
    **/
-  protected ContactFilter contactFilter = null;
+  private ContactFilter contactFilter = null;
 
   /**
    * Contact listener
    **/
-  protected ContactListener contactListener = null;
+  private ContactListener contactListener = null;
 
   public World(Vector2 gravity) {
     this(gravity, false);
@@ -926,8 +926,8 @@ b2ContactFilter defaultFilter;
 // b2Contact* GetContactList();
 
   private long[] contactAddrs = new long[200];
-  private final Array<Contact> contacts = new Array<Contact>();
-  private final Array<Contact> freeContacts = new Array<Contact>();
+  private final Array<Contact> contacts = new Array<>();
+  private final Array<Contact> freeContacts = new Array<>();
 
   /**
    * Returns the list of {@link Contact} instances produced by the last call to {@link #step(float, int, int)}. Note that the
