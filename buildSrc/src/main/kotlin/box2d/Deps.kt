@@ -1,7 +1,6 @@
 package box2d
 
 object Deps {
-
     val gdx = "com.badlogicgames.gdx:gdx:${Versions.gdx}"
 
     object Android {

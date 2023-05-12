@@ -12,7 +12,7 @@ sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
 repositories { mavenCentral() }
-dependencies { implementation Deps.gdx }
+dependencies { api Deps.gdx }
 apply plugin: "com.badlogicgames.gdx.gdx-jnigen"
 
 jnigen {
