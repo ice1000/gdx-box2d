@@ -257,7 +257,7 @@ b2ContactFilter defaultFilter;
    * Register a destruction listener. The listener is owned by you and must remain in scope.
    */
   public void setDestructionListener(DestructionListener listener) {
-
+    throw new UnsupportedOperationException("TODO!");
   }
 
   /**
