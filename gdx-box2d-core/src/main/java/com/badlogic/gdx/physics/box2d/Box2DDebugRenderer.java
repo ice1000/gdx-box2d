@@ -87,6 +87,10 @@ public class Box2DDebugRenderer implements Disposable {
 	public final Color AABB_COLOR = new Color(1.0f, 0, 1.0f, 1f);
 	public final Color VELOCITY_COLOR = new Color(1.0f, 0, 0f, 1f);
 
+	public final Color ROPE_C = new Color(0.4f, 0.5f, 0.7f, 1);
+	public final Color ROPE_PG = new Color(0.1f, 0.8f, 0.1f, 1);
+	public final Color ROPE_PD = new Color(0.7f, 0.2f, 0.4f, 1);
+
 	private void renderBodies (World world) {
 		renderer.begin(ShapeType.Line);
 

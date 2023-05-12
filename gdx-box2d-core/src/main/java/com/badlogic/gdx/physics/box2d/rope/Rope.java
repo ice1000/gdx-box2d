@@ -110,7 +110,4 @@ public class Rope implements Disposable {
         b2Rope* rope = (b2Rope*)addr;
         rope->Reset(b2Vec2(x, y));
     */
-
-//    ///
-//    void Draw(b2Draw* draw) const;
 }
