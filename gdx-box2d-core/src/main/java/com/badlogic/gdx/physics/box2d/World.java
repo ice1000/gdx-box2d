@@ -266,14 +266,17 @@ b2ContactFilter defaultFilter;
    */
   public void setContactFilter(ContactFilter filter) {
     this.contactFilter = filter;
-    setUseDefaultContactFilter(filter == null);
+    setUseDefaultContactFilter(addr, filter == null);
   }
 
   /**
    * tells the native code not to call the Java world class if use is false
    **/
-  private native void setUseDefaultContactFilter(boolean use); /*
-		// FIXME
+  private native void setUseDefaultContactFilter(long addr, boolean use); /*
+		if (!use) {
+		  b2World* world = (b2World*)addr;
+		  world->SetContactFilter(&b2_defaultFilter);
+		}
 	*/
 
   /**

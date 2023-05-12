@@ -15,3 +15,4 @@ This is an attempt to port box2d 2.4.1 to Java.
 1. Removed `userData` objects from native library, because we already have them on JVM.
 2. Renamed `QueryAABB` into `queryAABB`, provide an overload.
 3. Applied some IntelliJ code inspections.
+4. Tried to port `b2Hull` but didn't find an optimal way.

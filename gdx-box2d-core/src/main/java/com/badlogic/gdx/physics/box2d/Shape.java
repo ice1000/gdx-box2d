@@ -42,8 +42,6 @@ public abstract class Shape implements Disposable {
     Circle, Edge, Polygon, Chain,
   }
 
-  ;
-
   /**
    * the address of the shape
    **/
