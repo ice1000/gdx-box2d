@@ -1,4 +1,4 @@
-package org.badlogic.gdx.box2dLight;
+package com.badlogic.gdx.box2dLight;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import org.badlogic.gdx.shaders.LightShader;
+import com.badlogic.gdx.shaders.LightShader;
 
 /**
  * Handler that manages everything related to lights updating and rendering

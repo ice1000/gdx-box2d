@@ -1,6 +1,6 @@
-package org.badlogic.gdx.shaders;
+package com.badlogic.gdx.shaders;
 
-import org.badlogic.gdx.box2dLight.RayHandler;
+import com.badlogic.gdx.box2dLight.RayHandler;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 public class Gaussian {

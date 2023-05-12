@@ -1,4 +1,4 @@
-package org.badlogic.gdx.box2dLight;
+package com.badlogic.gdx.box2dLight;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Mesh;
