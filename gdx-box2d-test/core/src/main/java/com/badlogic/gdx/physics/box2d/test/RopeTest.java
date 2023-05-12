@@ -16,15 +16,15 @@ public class RopeTest extends Box2DTest {
     rope = new Rope();
     RopeDef ropeDef = new RopeDef();
     int N = 25;
-    float L = .5f;
+    float L = .8f;
     ropeDef.vertices = new Vector2[N];
     ropeDef.masses = new float[N];
     for (int i = 0; i < N; ++i) {
-      ropeDef.vertices[i] = new Vector2(0.0f, L * (N - i));
+      ropeDef.vertices[i] = new Vector2(0.0f, L * (N - i) - 5);
       ropeDef.masses[i] = 1.0f;
     }
     ropeDef.masses[0] = 0.0f;
-    ropeDef.masses[1] = 0.0f;
+    ropeDef.masses[7] = 0.0f;
 
     RopeTuning tuning = ropeDef.tuning;
     tuning.bendHertz = 30.0f;

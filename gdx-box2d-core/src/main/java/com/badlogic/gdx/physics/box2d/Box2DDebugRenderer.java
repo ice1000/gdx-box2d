@@ -91,10 +91,10 @@ public class Box2DDebugRenderer implements Disposable {
       Vector2 fst = data.pointAt(i).cpy();
       drawSegment(fst, data.pointAt(i + 1), ROPE_C);
       Color pc = data.invMasses.get(i) > 0.0f ? ROPE_PD : ROPE_PG;
-      drawSolidCircle(fst, .1f, Vector2.Zero, pc);
+      drawSolidCircle(fst, .05f, Vector2.Zero, pc);
     }
     Color pc = data.invMasses.get(data.count - 1) > 0.0f ? ROPE_PD : ROPE_PG;
-    drawSolidCircle(data.pointAt(data.count - 1), .1f, Vector2.Zero, pc);
+    drawSolidCircle(data.pointAt(data.count - 1), .05f, Vector2.Zero, pc);
     renderer.end();
   }
 

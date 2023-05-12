@@ -8,3 +8,8 @@ This is an attempt to port box2d 2.4.1 to Java.
 2. No-ops for now:
    * `com.badlogic.gdx.physics.box2d.World#setDestructionListener`
    * `com.badlogic.gdx.physics.box2d.World.setUseDefaultContactFilter`
+
+## 12 May 2023
+
+0. Ported some commits from libGDX, so we have better performance, nullability protection, more APIs, etc.
+1. Removed `userData` objects from native library, because we already have them on JVM.
