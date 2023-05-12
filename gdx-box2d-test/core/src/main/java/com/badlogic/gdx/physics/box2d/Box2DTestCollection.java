@@ -27,7 +27,7 @@ public class Box2DTestCollection extends ApplicationAdapter implements InputProc
 	private final Box2DTest[] tests = {new DebugRendererTest(), new CollisionFiltering(), new Chain(), new Bridge(),
 		new SphereStack(), new Cantilever(), new ApplyForce(), new ContinuousTest(), new Prismatic(), new CharacterCollision(),
 		new BodyTypes(), new SimpleTest(), new Pyramid(), new OneSidedPlatform(), new VerticalStack(), new VaryingRestitution(),
-		new ConveyorBelt()};
+		new ConveyorBelt(), new RopeTest()};
 
 	private int testIndex = 0;
 

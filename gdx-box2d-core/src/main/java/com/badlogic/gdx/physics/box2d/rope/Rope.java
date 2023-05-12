@@ -46,7 +46,7 @@ public class Rope implements Disposable {
     public void create(RopeDef def) {
         RopeTuning tuning = def.tuning;
         float[] verts = JniUtil.arrayOfVec2IntoFloat(def.vertices);
-        jniCreate(addr, def.count, verts, verts.length, def.masses, def.masses.length, def.gravity.x, def.gravity.y,
+        jniCreate(addr, verts, def.masses, def.masses.length, def.gravity.x, def.gravity.y,
                 tuning.stretchingModel.value, tuning.bendingModel.value, tuning.damping,
                 tuning.stretchStiffness, tuning.stretchHertz, tuning.stretchDamping,
                 tuning.bendStiffness, tuning.bendHertz, tuning.bendDamping,
@@ -54,21 +54,20 @@ public class Rope implements Disposable {
     }
 
     private native void jniCreate(
-            long addr, int count, float[] verts, int vertLen, float[] masses, int massLen,
+            long addr, float[] verts, float[] masses, int count,
             float x, float y, int stretchingModel, int bendingModel, float damping, float stretchStiffness,
             float stretchHertz, float stretchDamping, float bendStiffness, float bendHertz,
             float bendDamping, boolean isometric, boolean fixedEffectiveMass, boolean warmStart); /*
         b2Rope* rope = (b2Rope*)addr;
         b2RopeDef def;
         def.count = count;
-		int numVertices = vertLen / 2;
-		b2Vec2* verticesOut = new b2Vec2[numVertices];
+		b2Vec2* verticesOut = new b2Vec2[count];
 		int offset = 0;
-		for(int i = 0; i < numVertices; i++) {
+		for(int i = 0; i < count; i++) {
 			verticesOut[i] = b2Vec2(verts[(i<<1) + offset], verts[(i<<1) + offset + 1]);
 		}
-		float* massesOut = new float[massLen];
-		for(int i = 0; i < massLen; i++) {
+		float* massesOut = new float[count];
+		for(int i = 0; i < count; i++) {
 		    massesOut[i] = masses[i];
         }
         def.vertices = verticesOut;
