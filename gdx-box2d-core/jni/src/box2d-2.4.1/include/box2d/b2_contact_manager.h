@@ -37,8 +37,6 @@ class B2_API b2ContactManager
 public:
 	b2ContactManager();
 
-	void UseDefault();
-
 	// Broad-phase callback.
 	void AddPair(void* proxyUserDataA, void* proxyUserDataB);
 

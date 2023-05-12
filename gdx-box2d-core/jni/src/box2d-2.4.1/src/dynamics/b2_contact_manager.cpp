@@ -38,11 +38,6 @@ b2ContactManager::b2ContactManager()
 	m_allocator = nullptr;
 }
 
-void b2ContactManager::UseDefault()
-{
-	m_contactFilter = &b2_defaultFilter;
-}
-
 void b2ContactManager::Destroy(b2Contact* c)
 {
 	b2Fixture* fixtureA = c->GetFixtureA();
