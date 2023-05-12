@@ -118,7 +118,7 @@ struct B2_API b2BodyDef
 	bool enabled;
 
 	/// Use this to store application specific body data.
-	b2BodyUserData userData;
+	// b2BodyUserData userData;
 
 	/// Scale the gravity applied to this body.
 	float gravityScale;
@@ -376,8 +376,8 @@ public:
 	const b2Body* GetNext() const;
 
 	/// Get the user data pointer that was provided in the body definition.
-	b2BodyUserData& GetUserData();
-	const b2BodyUserData& GetUserData() const;
+	// b2BodyUserData& GetUserData();
+	// const b2BodyUserData& GetUserData() const;
 
 	/// Get the parent world of this body.
 	b2World* GetWorld();
@@ -465,7 +465,7 @@ private:
 
 	float m_sleepTime;
 
-	b2BodyUserData m_userData;
+	// b2BodyUserData m_userData;
 };
 
 inline b2BodyType b2Body::GetType() const
@@ -730,15 +730,15 @@ inline const b2Body* b2Body::GetNext() const
 	return m_next;
 }
 
-inline b2BodyUserData& b2Body::GetUserData()
-{
-	return m_userData;
-}
-
-inline const b2BodyUserData& b2Body::GetUserData() const
-{
-	return m_userData;
-}
+//inline b2BodyUserData& b2Body::GetUserData()
+//{
+//	return m_userData;
+//}
+//
+//inline const b2BodyUserData& b2Body::GetUserData() const
+//{
+//	return m_userData;
+//}
 
 inline void b2Body::ApplyForce(const b2Vec2& force, const b2Vec2& point, bool wake)
 {

@@ -82,7 +82,7 @@ struct B2_API b2JointDef
 	b2JointType type;
 
 	/// Use this to attach application specific data to your joints.
-	b2JointUserData userData;
+//	b2JointUserData userData;
 
 	/// The first attached body.
 	b2Body* bodyA;
@@ -136,8 +136,8 @@ public:
 	const b2Joint* GetNext() const;
 
 	/// Get the user data pointer.
-	b2JointUserData& GetUserData();
-	const b2JointUserData& GetUserData() const;
+//	b2JointUserData& GetUserData();
+//	const b2JointUserData& GetUserData() const;
 
 	/// Short-cut function to determine if either body is enabled.
 	bool IsEnabled() const;
@@ -187,7 +187,7 @@ protected:
 	bool m_islandFlag;
 	bool m_collideConnected;
 
-	b2JointUserData m_userData;
+//	b2JointUserData m_userData;
 };
 
 inline b2JointType b2Joint::GetType() const
@@ -215,15 +215,15 @@ inline const b2Joint* b2Joint::GetNext() const
 	return m_next;
 }
 
-inline b2JointUserData& b2Joint::GetUserData()
-{
-	return m_userData;
-}
-
-inline const b2JointUserData& b2Joint::GetUserData() const
-{
-	return m_userData;
-}
+//inline b2JointUserData& b2Joint::GetUserData()
+//{
+//	return m_userData;
+//}
+//
+//inline const b2JointUserData& b2Joint::GetUserData() const
+//{
+//	return m_userData;
+//}
 
 inline bool b2Joint::GetCollideConnected() const
 {

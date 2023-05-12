@@ -112,7 +112,7 @@ public class Rope implements Disposable {
     */
 
   public static class DrawData {
-    private Vector2 tmp = new Vector2();
+    private final Vector2 tmp = new Vector2();
     public final FloatArray verticesFlat = new FloatArray();
     public final FloatArray invMasses = new FloatArray();
     public int count;
