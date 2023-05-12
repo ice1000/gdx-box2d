@@ -9,6 +9,8 @@ buildscript {
 }
 
 apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
@@ -59,3 +61,78 @@ clean.doFirst {
 
 //jar.dependsOn jnigenBuild
 sourceSets.main.resources.srcDirs += ["libs"]
+
+tasks.register('sourcesJar', Jar) {
+  dependsOn classes
+  archiveClassifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+tasks.register('javadocJar', Jar) {
+  dependsOn javadoc
+  archiveClassifier = 'javadoc'
+  from javadoc
+}
+
+artifacts {
+  archives sourcesJar, javadocJar
+}
+java {
+  withSourcesJar()
+  withJavadocJar()
+}
+
+def prop(String key) {
+  hasProperty(key) ? property(key).toString() : null
+}
+
+def ossrhUsername = prop("ossrhUsername")
+def ossrhPassword = prop("ossrhPassword")
+
+if (ossrhUsername != null) publishing.repositories {
+  maven {
+    url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2")
+    name = "MavenCentral"
+    credentials {
+      username = ossrhUsername
+      password = ossrhPassword
+    }
+  }
+}
+
+publishing.publications {
+  maven(MavenPublication) {
+    artifactId 'core'
+    groupId 'org.aya-prover.gdx-box2d'
+    version project.version
+    from components.java
+
+    pom {
+      name = artifactId
+      description = 'This project is a higher-order fork of a box2d binding.'
+      url = 'https://github.com/ice1000/gdx-box2d'
+      licenses {
+        license {
+          name = 'The Apache License, Version 2.0'
+          url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+        }
+      }
+      developers {
+        developer {
+          id = 'ice1000'
+          name = 'Tesla Zhang'
+          email = 'ice1000kotlin@foxmail.com'
+        }
+        developer {
+          id = 'MobiDevelop'
+          name = 'Justin Shapcott'
+          email = 'justin@mobidevelop.com'
+        }
+      }
+      scm {
+        url = 'https://github.com/ice1000/gdx-box2d'
+        connection = "scm:git:${url}"
+      }
+    }
+  }
+}
