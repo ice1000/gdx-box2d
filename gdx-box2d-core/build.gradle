@@ -75,4 +75,3 @@ clean.doFirst {
 assemble.dependsOn jnigenBuild
 
 sourceSets.main.resources.srcDirs += ["libs"]
-java.sourceCompatibility = JavaVersion.VERSION_1_7
