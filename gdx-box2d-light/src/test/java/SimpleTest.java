@@ -32,4 +32,8 @@ public class SimpleTest extends ApplicationAdapter {
     rayHandler.setCombinedMatrix(camera);
     rayHandler.updateAndRender();
   }
+
+  public static void main(String[] args) {
+    DesktopLauncher.launch(new SimpleTest());
+  }
 }

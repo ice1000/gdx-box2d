@@ -1,9 +1,14 @@
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 public class DesktopLauncher {
 
   public static void main(String[] argv) {
+    launch(new Box2dLightTest());
+  }
+
+  public static void launch(ApplicationListener app) {
     Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
     config.setTitle("box2d lights test");
 //    config.width = 800;
@@ -12,7 +17,7 @@ public class DesktopLauncher {
 //    config.depth = 0;
     config.useVsync(true);
 
-    new Lwjgl3Application(new Box2dLightTest(), config);
+    new Lwjgl3Application(app, config);
   }
 
 }
