@@ -75,7 +75,7 @@ jobs:
         uses: actions/download-artifact@v2.0.5
         with:
           name: macos-natives
-          path: gdx-box2d-core/libs
+          path: libs
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build natives with Gradle
@@ -87,4 +87,4 @@ jobs:
         with:
           name: output-libs
           path: |
-            gdx-box2d-core/build/libs/
+            libs/
