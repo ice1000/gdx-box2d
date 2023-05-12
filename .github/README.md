@@ -1,6 +1,7 @@
 # LibGDX style binding for box2d 2.4.1
 
 [![Java CI with Gradle](https://github.com/ice1000/gdx-box2d/actions/workflows/gradle.yml/badge.svg)](https://github.com/ice1000/gdx-box2d/actions/workflows/gradle.yml)
+![Maven Central](https://img.shields.io/maven-central/v/org.aya-prover.gdx-box2d/core)
 
 When I started following the updates of box2c, the project has not been developed for more than a week.
 So I decided to update the box2d binding to 2.4.1 instead of creating one for box2c.
