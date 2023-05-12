@@ -82,13 +82,13 @@ public class Box2DDebugRenderer implements Disposable {
 	public void render(Rope.DrawData data) {
 		renderer.begin(ShapeType.Line);
 		for (int i = 0; i < data.count - 1; i++) {
-			Vector2 fst = data.ps(i).cpy();
-			drawSegment(fst, data.ps(i + 1), ROPE_C);
+			Vector2 fst = data.pointAt(i).cpy();
+			drawSegment(fst, data.pointAt(i + 1), ROPE_C);
 			Color pc = data.invMasses.get(i) > 0.0f ? ROPE_PD : ROPE_PG;
-			drawSolidCircle(fst, 5f, Vector2.Zero, pc);
+			drawSolidCircle(fst, .1f, Vector2.Zero, pc);
 		}
 		Color pc = data.invMasses.get(data.count - 1) > 0.0f ? ROPE_PD : ROPE_PG;
-		drawSolidCircle(data.ps(data.count - 1), 5f, Vector2.Zero, pc);
+		drawSolidCircle(data.pointAt(data.count - 1), .1f, Vector2.Zero, pc);
 		renderer.end();
 	}
 

@@ -117,7 +117,7 @@ public class Rope implements Disposable {
         public final FloatArray invMasses = new FloatArray();
         public int count;
 
-        public Vector2 ps(int i) {
+        public Vector2 pointAt(int i) {
             tmp.x = verticesFlat.get(i * 2);
             tmp.y = verticesFlat.get(i * 2 + 1);
             return tmp;
@@ -147,8 +147,8 @@ public class Rope implements Disposable {
         drawData.invMasses.clear();
         int count = jniGetCount(addr);
         drawData.count = count;
-        drawData.verticesFlat.ensureCapacity(count * 2);
-        drawData.invMasses.ensureCapacity(count);
+        drawData.verticesFlat.setSize(count * 2);
+        drawData.invMasses.setSize(count);
         jniGetPS(addr, drawData.verticesFlat.items);
         jniGetInvMasses(addr, drawData.invMasses.items);
         return drawData;

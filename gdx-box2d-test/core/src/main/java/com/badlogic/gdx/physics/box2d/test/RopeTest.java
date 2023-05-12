@@ -15,7 +15,7 @@ public class RopeTest extends Box2DTest {
     protected void createWorld(World world) {
         rope = new Rope();
         RopeDef ropeDef = new RopeDef();
-        int N = 20;
+        int N = 25;
         float L = .5f;
         ropeDef.vertices = new Vector2[N];
         ropeDef.masses = new float[N];
