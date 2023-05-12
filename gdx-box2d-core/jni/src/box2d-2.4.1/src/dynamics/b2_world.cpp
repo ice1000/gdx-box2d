@@ -102,6 +102,11 @@ void b2World::SetContactFilter(b2ContactFilter* filter)
 	m_contactManager.m_contactFilter = filter;
 }
 
+void b2World::SetDefaultContactFilter()
+{
+	m_contactManager.UseDefault();
+}
+
 void b2World::SetContactListener(b2ContactListener* listener)
 {
 	m_contactManager.m_contactListener = listener;

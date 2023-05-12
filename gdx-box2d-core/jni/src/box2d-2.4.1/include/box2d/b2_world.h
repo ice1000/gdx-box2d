@@ -62,6 +62,8 @@ public:
 	/// owned by you and must remain in scope.
 	void SetContactFilter(b2ContactFilter* filter);
 
+	void SetDefaultContactFilter();
+
 	/// Register a contact event listener. The listener is owned by you and must
 	/// remain in scope.
 	void SetContactListener(b2ContactListener* listener);

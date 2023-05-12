@@ -272,11 +272,9 @@ b2ContactFilter defaultFilter;
   /**
    * tells the native code not to call the Java world class if use is false
    **/
-  private native void setUseDefaultContactFilter(long addr, boolean use); /*
-		if (!use) {
-		  b2World* world = (b2World*)addr;
-		  world->SetContactFilter(&b2_defaultFilter);
-		}
+  private native void setUseDefaultContactFilter(long addr, boolean useDefault); /*
+    b2World* world = (b2World*)addr;
+    world->SetContactFilter(useDefault ? &b2_defaultFilter : &contactFilter);
 	*/
 
   /**
