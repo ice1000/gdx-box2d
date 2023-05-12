@@ -17,6 +17,7 @@
 package com.badlogic.gdx.physics.box2d;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Disposable;
 
 /**
  * A shape is used for collision detection. You can create a shape however you like. Shapes used for simulation in b2World are
@@ -26,7 +27,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author mzechner
  */
-public abstract class Shape {
+public abstract class Shape implements Disposable {
     // @off
 	/*JNI
 #include <box2d/box2d.h>
@@ -82,6 +83,7 @@ public abstract class Shape {
     /**
      * Needs to be called when the shape is no longer used, e.g. after a fixture was created based on the shape.
      */
+    @Override
     public void dispose() {
         jniDispose(addr);
     }
