@@ -121,6 +121,11 @@ public:
 	///
 	void Draw(b2Draw* draw) const;
 
+    /// ice1000: added for Java
+    void JavaGetPS(float* buf) const;
+    int JavaGetCount() const;
+    void JavaGetInvMasses(float* buf) const;
+
 private:
 
 	void SolveStretch_PBD();

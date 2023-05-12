@@ -3,6 +3,7 @@ package com.badlogic.gdx.physics.box2d.rope;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.JniUtil;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.FloatArray;
 
 /**
  * b2_rope.h
@@ -110,4 +111,47 @@ public class Rope implements Disposable {
         b2Rope* rope = (b2Rope*)addr;
         rope->Reset(b2Vec2(x, y));
     */
+
+    public static class DrawData {
+        private Vector2 tmp = new Vector2();
+        public final FloatArray verticesFlat = new FloatArray();
+        public final FloatArray invMasses = new FloatArray();
+        public int count;
+
+        public Vector2 ps(int i) {
+            tmp.x = verticesFlat.get(i * 2);
+            tmp.y = verticesFlat.get(i * 2 + 1);
+            return tmp;
+        }
+    }
+
+    private static DrawData drawData;
+
+    private native int jniGetCount(long addr); /*
+        b2Rope* rope = (b2Rope*)addr;
+        return rope->JavaGetCount();
+    */
+
+    private native void jniGetPS(long addr, float[] buf); /*
+        b2Rope* rope = (b2Rope*)addr;
+        rope->JavaGetPS(buf);
+    */
+
+    private native void jniGetInvMasses(long addr, float[] buf); /*
+        b2Rope* rope = (b2Rope*)addr;
+        rope->JavaGetInvMasses(buf);
+    */
+
+    public DrawData getDrawData() {
+        if (drawData == null) drawData = new DrawData();
+        drawData.verticesFlat.clear();
+        drawData.invMasses.clear();
+        int count = jniGetCount(addr);
+        drawData.count = count;
+        drawData.verticesFlat.ensureCapacity(count * 2);
+        drawData.invMasses.ensureCapacity(count);
+        jniGetPS(addr, drawData.verticesFlat.items);
+        jniGetInvMasses(addr, drawData.invMasses.items);
+        return drawData;
+    }
 }

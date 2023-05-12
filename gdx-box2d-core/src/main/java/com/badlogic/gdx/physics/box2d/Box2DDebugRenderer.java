@@ -25,6 +25,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.JointDef.JointType;
 import com.badlogic.gdx.physics.box2d.Shape.Type;
 import com.badlogic.gdx.physics.box2d.joints.PulleyJoint;
+import com.badlogic.gdx.physics.box2d.rope.Rope;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
@@ -76,6 +77,19 @@ public class Box2DDebugRenderer implements Disposable {
 	public void render (World world, Matrix4 projMatrix) {
 		renderer.setProjectionMatrix(projMatrix);
 		renderBodies(world);
+	}
+
+	public void render(Rope.DrawData data) {
+		renderer.begin(ShapeType.Line);
+		for (int i = 0; i < data.count - 1; i++) {
+			Vector2 fst = data.ps(i).cpy();
+			drawSegment(fst, data.ps(i + 1), ROPE_C);
+			Color pc = data.invMasses.get(i) > 0.0f ? ROPE_PD : ROPE_PG;
+			drawSolidCircle(fst, 5f, Vector2.Zero, pc);
+		}
+		Color pc = data.invMasses.get(data.count - 1) > 0.0f ? ROPE_PD : ROPE_PG;
+		drawSolidCircle(data.ps(data.count - 1), 5f, Vector2.Zero, pc);
+		renderer.end();
 	}
 
 	public final Color SHAPE_NOT_ACTIVE = new Color(0.5f, 0.5f, 0.3f, 1);
