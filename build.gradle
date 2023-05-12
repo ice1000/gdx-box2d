@@ -57,7 +57,7 @@ subprojects {
   def publish = projName.startsWith('gdx-box2d') && !projName.contains('test')
   if (publish) publishing.publications {
     maven(MavenPublication) {
-      artifactId(projName.drop('gdx-box2d'.length()))
+      artifactId(projName.drop('gdx-box2d-'.length()))
       groupId project.group
       version project.version
       from components.java
