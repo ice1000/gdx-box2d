@@ -42,6 +42,11 @@ public class ChainShape extends Shape {
     return Type.Chain;
   }
 
+  public native void clear(); /*
+    b2ChainShape* chain = (b2ChainShape*)addr;
+    chain->Clear();
+  */
+
   /**
    * Create a loop. This automatically adjusts connectivity.
    *
@@ -134,7 +139,12 @@ public class ChainShape extends Shape {
 		return chain->m_count;
 	*/
 
-  private static float[] verts = new float[2];
+  /**
+   * @return false, according to the impl in C++
+   */
+  @Override public boolean testPoint(Transform transform, Vector2 point) {
+    return false;
+  }
 
   public boolean isLooped() {
     return isLooped;
@@ -148,10 +158,6 @@ public class ChainShape extends Shape {
 //
 // /// Get a child edge.
 // void GetChildEdge(b2EdgeShape* edge, int32 index) const;
-//
-// /// This always return false.
-// /// @see b2Shape::TestPoint
-// bool TestPoint(const b2Transform& transform, const b2Vec2& p) const;
 //
 // /// Implement b2Shape.
 // bool RayCast(b2RayCastOutput* output, const b2RayCastInput& input,
