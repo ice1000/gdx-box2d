@@ -67,14 +67,14 @@ public class RayHandler implements Disposable {
    *
    * <p>NOTE: DO NOT MODIFY THIS LIST
    */
-  final Array<Light> lightList = new Array<Light>(false, 16);
+  final Array<Light> lightList = new Array<>(false, 16);
 
   /**
    * This Array contain all the disabled lights.
    *
    * <p>NOTE: DO NOT MODIFY THIS LIST
    */
-  final Array<Light> disabledLights = new Array<Light>(false, 16);
+  final Array<Light> disabledLights = new Array<>(false, 16);
 
   LightMap lightMap;
   final ShaderProgram lightShader;
@@ -309,7 +309,7 @@ public class RayHandler implements Disposable {
     }
 
     ShaderProgram shader = customLightShader != null ? customLightShader : lightShader;
-    shader.begin();
+    shader.bind();
     {
       shader.setUniformMatrix("u_projTrans", combined);
       if (customLightShader != null) updateLightShader();
@@ -318,7 +318,6 @@ public class RayHandler implements Disposable {
         light.render();
       }
     }
-    shader.end();
 
     if (useLightMap) {
       if (customViewport) {
