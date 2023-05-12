@@ -13,6 +13,7 @@ public class Rope implements Disposable {
     // @off
 	/*JNI
 #include <box2d/box2d.h>
+#include <box2d/b2_rope.h>
 	 */
     protected long addr;
 
