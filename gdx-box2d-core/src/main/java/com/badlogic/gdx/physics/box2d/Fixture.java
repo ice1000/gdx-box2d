@@ -38,7 +38,10 @@ public class Fixture {
   /**
    * the fixture filter data, initialized lazily
    **/
-  private Filter filter;
+  private final Filter filter = new Filter();
+
+  /** flag to indicate if filter data needs to be updated with a JNI call **/
+  private boolean dirtyFilter = true;
 
   /**
    * the shape, initialized lazy
@@ -65,6 +68,7 @@ public class Fixture {
     this.addr = addr;
     this.shape = null;
     this.userData = null;
+    this.dirtyFilter = true;
   }
 
   /**
@@ -169,9 +173,8 @@ public class Fixture {
    */
   public void setFilterData(Filter filter) {
     jniSetFilterData(addr, filter.categoryBits, filter.maskBits, filter.groupIndex);
-    if (this.filter == null)
-      this.filter = new Filter();
     this.filter.set(filter);
+    dirtyFilter = false;
   }
 
   private native void jniSetFilterData(long addr, short categoryBits, short maskBits, short groupIndex); /*
@@ -187,18 +190,16 @@ public class Fixture {
    * Get the contact filtering data.
    */
   private final short[] tmp = new short[3];
-  private final Filter tmpFilter = new Filter();
 
   public Filter getFilterData() {
-    if (filter == null) {
+    if (dirtyFilter) {
       jniGetFilterData(addr, tmp);
-      filter = new Filter();
       filter.maskBits = tmp[0];
       filter.categoryBits = tmp[1];
       filter.groupIndex = tmp[2];
+      dirtyFilter = false;
     }
-    tmpFilter.set(filter);
-    return tmpFilter;
+    return filter;
   }
 
   private native void jniGetFilterData(long addr, short[] filter); /*
