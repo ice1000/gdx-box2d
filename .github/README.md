@@ -11,4 +11,13 @@ For development notes, see [notes](/notes/CHANGES.md).
 
 ## Gradle
 
-TODO
+Let `box2dVersion` be a string, whose value is the string displayed on the maven central badge.
+
+```groovy
+repositories {
+  mavenCentral()
+}
+dependencies {
+  implementation "org.aya-prover.gdx-box2d:core:$box2dVersion"
+}
+```
