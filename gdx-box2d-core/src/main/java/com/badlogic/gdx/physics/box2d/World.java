@@ -894,8 +894,11 @@ b2ContactFilter defaultFilter;
     jniQueryAABB(addr, lowerX, lowerY, upperX, upperY);
   }
 
+  public void queryAABB(QueryCallback callback, Vector2 lower, Vector2 upper) {
+    queryAABB(callback, lower.x, lower.y, upper.x, upper.y);
+  }
+
   private QueryCallback queryCallback = null;
-  ;
 
   private native void jniQueryAABB(long addr, float lowX, float lowY, float upX, float upY); /*
 		b2World* world = (b2World*)addr;
@@ -1030,8 +1033,7 @@ b2ContactFilter defaultFilter;
         return filterA.groupIndex > 0;
       }
 
-      boolean collide = (filterA.maskBits & filterB.categoryBits) != 0 && (filterA.categoryBits & filterB.maskBits) != 0;
-      return collide;
+      return (filterA.maskBits & filterB.categoryBits) != 0 && (filterA.categoryBits & filterB.maskBits) != 0;
     }
   }
 
@@ -1109,8 +1111,8 @@ b2ContactFilter defaultFilter;
 		world->RayCast( &callback, b2Vec2(aX,aY), b2Vec2(bX,bY) );
 	*/
 
-  private Vector2 rayPoint = new Vector2();
-  private Vector2 rayNormal = new Vector2();
+  private final Vector2 rayPoint = new Vector2();
+  private final Vector2 rayNormal = new Vector2();
 
   private float reportRayFixture(long addr, float pX, float pY, float nX, float nY, float fraction) {
     if (rayCastCallback != null) {
