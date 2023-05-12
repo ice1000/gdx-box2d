@@ -115,16 +115,17 @@ public abstract class Shape {
 	*/
 
     public boolean testPoint(Transform transform, Vector2 point) {
-        return jniTestPoint(addr, transform.vals, point.x, point.y);
+        return jniTestPoint(addr, transform.vals[0], transform.vals[1], transform.vals[2], transform.vals[3], point.x, point.y);
     }
 
-    public native boolean jniTestPoint(long addr, float[] transform, float pX, float pY); /*
+    public native boolean jniTestPoint(
+            long addr, float transformX, float transformY, float transformC, float transformS, float pX, float pY); /*
 		b2Shape* shape = (b2Shape*)addr;
 		b2Transform t;
-		t.p.x = vals[0];
-		t.p.y = vals[1];
-		t.q.c = vals[2];
-		t.q.s = vals[3];
+		t.p.x = transformX;
+		t.p.y = transformY;
+		t.q.c = transformC;
+		t.q.s = transformS;
 		b2Vec2 p(pX, pY);
 		return shape->TestPoint(t, p);
 	*/
