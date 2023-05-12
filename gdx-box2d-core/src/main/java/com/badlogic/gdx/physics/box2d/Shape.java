@@ -28,72 +28,72 @@ import com.badlogic.gdx.utils.Disposable;
  * @author mzechner
  */
 public abstract class Shape implements Disposable {
-    // @off
+  // @off
 	/*JNI
 #include <box2d/box2d.h>
 	 */
 
-    /**
-     * Enum describing the type of a shape
-     *
-     * @author mzechner
-     */
-    public enum Type {
-        Circle, Edge, Polygon, Chain,
-    }
+  /**
+   * Enum describing the type of a shape
+   *
+   * @author mzechner
+   */
+  public enum Type {
+    Circle, Edge, Polygon, Chain,
+  }
 
-    ;
+  ;
 
-    /**
-     * the address of the shape
-     **/
-    protected long addr;
+  /**
+   * the address of the shape
+   **/
+  protected long addr;
 
-    /**
-     * Get the type of this shape. You can use this to down cast to the concrete shape.
-     *
-     * @return the shape type.
-     */
-    public abstract Type getType();
+  /**
+   * Get the type of this shape. You can use this to down cast to the concrete shape.
+   *
+   * @return the shape type.
+   */
+  public abstract Type getType();
 
-    /**
-     * Returns the radius of this shape
-     */
-    public float getRadius() {
-        return jniGetRadius(addr);
-    }
+  /**
+   * Returns the radius of this shape
+   */
+  public float getRadius() {
+    return jniGetRadius(addr);
+  }
 
-    private native float jniGetRadius(long addr); /*
+  private native float jniGetRadius(long addr); /*
 		b2Shape* shape = (b2Shape*)addr;
 		return shape->m_radius;
 	*/
 
-    /**
-     * Sets the radius of this shape
-     */
-    public void setRadius(float radius) {
-        jniSetRadius(addr, radius);
-    }
+  /**
+   * Sets the radius of this shape
+   */
+  public void setRadius(float radius) {
+    jniSetRadius(addr, radius);
+  }
 
-    private native void jniSetRadius(long addr, float radius); /*
+  private native void jniSetRadius(long addr, float radius); /*
 		b2Shape* shape = (b2Shape*)addr;
 		shape->m_radius = radius;
 	*/
 
-    /**
-     * Needs to be called when the shape is no longer used, e.g. after a fixture was created based on the shape.
-     */
-    @Override
-    public void dispose() {
-        jniDispose(addr);
-    }
+  /**
+   * Needs to be called when the shape is no longer used, e.g. after a fixture was created based on the shape.
+   */
+  @Override
+  public void dispose() {
+    jniDispose(addr);
+  }
 
-    private native void jniDispose(long addr); /*
+  private native void jniDispose(long addr); /*
 		b2Shape* shape = (b2Shape*)addr;
 		delete shape;
 	*/
 
-    protected static native int jniGetType(long addr); /*
+  protected static native int jniGetType(long addr); /*
 		b2Shape* shape = (b2Shape*)addr;
 		switch(shape->m_type) {
 		case b2Shape::e_circle: return 0;
@@ -104,24 +104,24 @@ public abstract class Shape implements Disposable {
 		}
 	*/
 
-    /**
-     * Get the number of child primitives.
-     */
-    public int getChildCount() {
-        return jniGetChildCount(addr);
-    }
+  /**
+   * Get the number of child primitives.
+   */
+  public int getChildCount() {
+    return jniGetChildCount(addr);
+  }
 
-    private native int jniGetChildCount(long addr); /*
+  private native int jniGetChildCount(long addr); /*
 		b2Shape* shape = (b2Shape*)addr;
 		return shape->GetChildCount();
 	*/
 
-    public boolean testPoint(Transform transform, Vector2 point) {
-        return jniTestPoint(addr, transform.vals[0], transform.vals[1], transform.vals[2], transform.vals[3], point.x, point.y);
-    }
+  public boolean testPoint(Transform transform, Vector2 point) {
+    return jniTestPoint(addr, transform.vals[0], transform.vals[1], transform.vals[2], transform.vals[3], point.x, point.y);
+  }
 
-    public native boolean jniTestPoint(
-            long addr, float transformX, float transformY, float transformC, float transformS, float pX, float pY); /*
+  public native boolean jniTestPoint(
+      long addr, float transformX, float transformY, float transformC, float transformS, float pX, float pY); /*
 		b2Shape* shape = (b2Shape*)addr;
 		b2Transform t;
 		t.p.x = transformX;

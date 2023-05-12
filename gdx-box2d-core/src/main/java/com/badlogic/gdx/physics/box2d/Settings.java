@@ -1,7 +1,7 @@
 package com.badlogic.gdx.physics.box2d;
 
 public class Settings {
-    // @off
+  // @off
 	/*JNI
 #include <box2d/box2d.h>
 	 */
@@ -10,7 +10,7 @@ public class Settings {
 //        b2_lengthUnitsPerMeter = value;
 //    */
 
-    public static native float getLengthUnitsPerMeter(); /*
+  public static native float getLengthUnitsPerMeter(); /*
         return b2_lengthUnitsPerMeter;
     */
 

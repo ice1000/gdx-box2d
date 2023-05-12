@@ -19,54 +19,63 @@ package com.badlogic.gdx.physics.box2d;
 import com.badlogic.gdx.math.Vector2;
 
 public class ChainShape extends Shape {
-	// @off
+  // @off
 	/*JNI
 #include <box2d/box2d.h>
 	 */
-	boolean isLooped = false;
+  boolean isLooped = false;
 
-	public ChainShape () {
-		addr = newChainShape();
-	}
+  public ChainShape() {
+    addr = newChainShape();
+  }
 
-	private native long newChainShape (); /*
+  private native long newChainShape(); /*
 		return (jlong)(new b2ChainShape());
 	*/
 
-	ChainShape (long addr) {
-		this.addr = addr;
-	}
+  ChainShape(long addr) {
+    this.addr = addr;
+  }
 
-	@Override
-	public Type getType () {
-		return Type.Chain;
-	}
+  @Override
+  public Type getType() {
+    return Type.Chain;
+  }
 
-	/** Create a loop. This automatically adjusts connectivity.
-	 * @param vertices an array of floats of alternating x, y coordinates. */
-	public void createLoop (float[] vertices) {
-		jniCreateLoop(addr, vertices, 0, vertices.length / 2);
-		isLooped = true;
-	}
+  /**
+   * Create a loop. This automatically adjusts connectivity.
+   *
+   * @param vertices an array of floats of alternating x, y coordinates.
+   */
+  public void createLoop(float[] vertices) {
+    jniCreateLoop(addr, vertices, 0, vertices.length / 2);
+    isLooped = true;
+  }
 
-	/** Create a loop. This automatically adjusts connectivity.
-	 * @param vertices an array of floats of alternating x, y coordinates.
-	 * @param offset into the vertices array
-	 * @param length after offset (in floats, not float-pairs, so even number) */
-	public void createLoop (float[] vertices, int offset, int length) {
-		jniCreateLoop(addr, vertices, offset, length / 2);
-		isLooped = true;
-	}
+  /**
+   * Create a loop. This automatically adjusts connectivity.
+   *
+   * @param vertices an array of floats of alternating x, y coordinates.
+   * @param offset   into the vertices array
+   * @param length   after offset (in floats, not float-pairs, so even number)
+   */
+  public void createLoop(float[] vertices, int offset, int length) {
+    jniCreateLoop(addr, vertices, offset, length / 2);
+    isLooped = true;
+  }
 
-	/** Create a loop. This automatically adjusts connectivity.
-	 * @param vertices an array of vertices, these are copied */
-	public void createLoop (Vector2[] vertices) {
-        float[] verts = JniUtil.arrayOfVec2IntoFloat(vertices);
-        jniCreateLoop(addr, verts, 0, verts.length / 2);
-		isLooped = true;
-	}
+  /**
+   * Create a loop. This automatically adjusts connectivity.
+   *
+   * @param vertices an array of vertices, these are copied
+   */
+  public void createLoop(Vector2[] vertices) {
+    float[] verts = JniUtil.arrayOfVec2IntoFloat(vertices);
+    jniCreateLoop(addr, verts, 0, verts.length / 2);
+    isLooped = true;
+  }
 
-	private native void jniCreateLoop (long addr, float[] verts, int offset, int numVertices); /*
+  private native void jniCreateLoop(long addr, float[] verts, int offset, int numVertices); /*
 		b2ChainShape* chain = (b2ChainShape*)addr;
 		b2Vec2* verticesOut = new b2Vec2[numVertices];
 		for( int i = 0; i < numVertices; i++ )
@@ -91,15 +100,18 @@ public class ChainShape extends Shape {
 //		isLooped = false;
 //	}
 
-	/** Create a chain with isolated end vertices.
-	 * @param vertices an array of vertices, these are copied */
-	public void createChain (Vector2[] vertices, Vector2 prevVert, Vector2 nextVert) {
-        float[] verts = JniUtil.arrayOfVec2IntoFloat(vertices);
-        jniCreateChain(addr, verts, 0, vertices.length, prevVert.x, prevVert.y, nextVert.x, nextVert.y);
-		isLooped = false;
-	}
+  /**
+   * Create a chain with isolated end vertices.
+   *
+   * @param vertices an array of vertices, these are copied
+   */
+  public void createChain(Vector2[] vertices, Vector2 prevVert, Vector2 nextVert) {
+    float[] verts = JniUtil.arrayOfVec2IntoFloat(vertices);
+    jniCreateChain(addr, verts, 0, vertices.length, prevVert.x, prevVert.y, nextVert.x, nextVert.y);
+    isLooped = false;
+  }
 
-	private native void jniCreateChain (long addr, float[] verts, int offset, int numVertices, float prevVertX, float prevVertY, float nextVertX, float nextVertY); /*
+  private native void jniCreateChain(long addr, float[] verts, int offset, int numVertices, float prevVertX, float prevVertY, float nextVertX, float nextVertY); /*
 		b2ChainShape* chain = (b2ChainShape*)addr;
 		b2Vec2* verticesOut = new b2Vec2[numVertices];
 		for( int i = 0; i < numVertices; i++ )
@@ -110,21 +122,23 @@ public class ChainShape extends Shape {
 		delete[] verticesOut;
 	*/
 
-	/** @return the number of vertices */
-	public int getVertexCount () {
-		return jniGetVertexCount(addr);
-	}
+  /**
+   * @return the number of vertices
+   */
+  public int getVertexCount() {
+    return jniGetVertexCount(addr);
+  }
 
-	private native int jniGetVertexCount (long addr); /*
+  private native int jniGetVertexCount(long addr); /*
 		b2ChainShape* chain = (b2ChainShape*)addr;
 		return chain->m_count;
 	*/
 
-	private static float[] verts = new float[2];
+  private static float[] verts = new float[2];
 
-	public boolean isLooped() {
-		return isLooped;
-	}
+  public boolean isLooped() {
+    return isLooped;
+  }
 
 // /// Implement b2Shape. Vertices are cloned using b2Alloc.
 // b2Shape* Clone(b2BlockAllocator* allocator) const;
