@@ -616,7 +616,7 @@ public class Body {
 
 	/** Set the type of this body. This may alter the mass and velocity. */
 	public void setType (BodyType type) {
-		jniSetType(addr, type.getValue());
+		jniSetType(addr, type.value);
 	}
 	
 	// @off
