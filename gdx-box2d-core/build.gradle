@@ -72,6 +72,6 @@ clean.doFirst {
     delete "obj"
 }
 
-processResources.dependsOn jnigenBuild
+jar.dependsOn jnigenBuild
 
 sourceSets.main.resources.srcDirs += ["libs"]
