@@ -53,7 +53,7 @@ public class Rope implements Disposable {
     }
 
     private native void jniCreate(
-            long addr, int count, float[] vertices, int vertLen, float[] masses, int massLen,
+            long addr, int count, float[] verts, int vertLen, float[] masses, int massLen,
             float x, float y, int stretchingModel, int bendingModel, float damping, float stretchStiffness,
             float stretchHertz, float stretchDamping, float bendStiffness, float bendHertz,
             float bendDamping, boolean isometric, boolean fixedEffectiveMass, boolean warmStart); /*
