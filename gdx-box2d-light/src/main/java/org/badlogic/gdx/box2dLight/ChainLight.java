@@ -153,6 +153,12 @@ public class ChainLight extends Light {
    */
   public void debugRender(ShapeRenderer shapeRenderer) {
     shapeRenderer.setColor(Color.YELLOW);
+    FloatArray vertices = createVertices();
+    shapeRenderer.polygon(vertices.shrink());
+    Pools.free(vertices);
+  }
+
+  private FloatArray createVertices() {
     FloatArray vertices = Pools.obtain(FloatArray.class);
     vertices.clear();
     for (int i = 0; i < rayNum; i++) {
@@ -161,8 +167,7 @@ public class ChainLight extends Light {
     for (int i = rayNum - 1; i > -1; i--) {
       vertices.addAll(startX[i], startY[i]);
     }
-    shapeRenderer.polygon(vertices.shrink());
-    Pools.free(vertices);
+    return vertices;
   }
 
   @Override
@@ -222,15 +227,7 @@ public class ChainLight extends Light {
     if (!this.chainLightBounds.contains(x, y))
       return false;
     // actual check
-    FloatArray vertices = Pools.obtain(FloatArray.class);
-    vertices.clear();
-
-    for (int i = 0; i < rayNum; i++) {
-      vertices.addAll(mx[i], my[i]);
-    }
-    for (int i = rayNum - 1; i > -1; i--) {
-      vertices.addAll(startX[i], startY[i]);
-    }
+    FloatArray vertices = createVertices();
 
     int intersects = 0;
     for (int i = 0; i < vertices.size; i += 2) {
