@@ -12,7 +12,7 @@ public class Rope {
 	 */
     protected long addr;
 
-    public Rope(long addr) {
+    protected Rope(long addr) {
         this.addr = addr;
     }
 }
