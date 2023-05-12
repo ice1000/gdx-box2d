@@ -1,5 +1,12 @@
+import box2d.Deps
+
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
 repositories { mavenCentral() }
-dependencies { api project(':gdx-box2d-core') }
+dependencies {
+  api project(':gdx-box2d-core')
+  testImplementation Deps.gdx
+  testImplementation Deps.Desktop.gdx
+  testImplementation Deps.Desktop.Natives.gdx
+}

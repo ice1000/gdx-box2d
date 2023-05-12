@@ -46,7 +46,7 @@ public class Box2dLightTest extends InputAdapter implements ApplicationListener 
   /**
    * our boxes
    **/
-  ArrayList<Body> balls = new ArrayList<Body>(BALLSNUM);
+  ArrayList<Body> balls = new ArrayList<>(BALLSNUM);
 
   /**
    * our ground box
@@ -75,7 +75,7 @@ public class Box2dLightTest extends InputAdapter implements ApplicationListener 
    */
   RayHandler rayHandler;
 
-  ArrayList<Light> lights = new ArrayList<Light>(BALLSNUM);
+  ArrayList<Light> lights = new ArrayList<>(BALLSNUM);
 
   float sunDirection = -90f;
 
@@ -170,7 +170,7 @@ public class Box2dLightTest extends InputAdapter implements ApplicationListener 
 
       font.draw(batch, "F12 - toggle help text", 0, Gdx.graphics.getHeight() - 180);
 
-      font.draw(batch, Integer.toString(Gdx.graphics.getFramesPerSecond()) + "mouse at shadows: " + atShadow + " time used for shadow calculation:" + aika / ++times + "ns", 0, 20);
+      font.draw(batch, Gdx.graphics.getFramesPerSecond() + "mouse at shadows: " + atShadow + " time used for shadow calculation:" + aika / ++times + "ns", 0, 20);
 
       batch.end();
     }
@@ -229,7 +229,7 @@ public class Box2dLightTest extends InputAdapter implements ApplicationListener 
   private final static int MAX_FPS = 30;
   private final static int MIN_FPS = 15;
   public final static float TIME_STEP = 1f / MAX_FPS;
-  private final static float MAX_STEPS = 1f + MAX_FPS / MIN_FPS;
+  private final static float MAX_STEPS = 1f + (float) MAX_FPS / MIN_FPS;
   private final static float MAX_TIME_PER_FRAME = TIME_STEP * MAX_STEPS;
   private final static int VELOCITY_ITERS = 6;
   private final static int POSITION_ITERS = 2;

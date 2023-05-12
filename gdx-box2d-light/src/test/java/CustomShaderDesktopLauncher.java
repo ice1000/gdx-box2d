@@ -1,19 +1,18 @@
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 public class CustomShaderDesktopLauncher {
 
   public static void main(String[] argv) {
-    LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-    config.title = "box2d lights test";
-    config.width = 800;
-    config.height = 480;
-    config.samples = 4;
-    config.depth = 0;
-    config.vSyncEnabled = true;
+    Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+    config.setTitle("box2d lights test");
+//    config.width = 800;
+//    config.height = 480;
+//    config.samples = 4;
+//    config.depth = 0;
+    config.useVsync(true);
 
-    config.fullscreen = false;
-    new LwjglApplication(new Box2dLightCustomShaderTest(), config);
+    new Lwjgl3Application(new Box2dLightCustomShaderTest(), config);
   }
 
 }
