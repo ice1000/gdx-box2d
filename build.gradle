@@ -2,4 +2,6 @@ allprojects {
     repositories {
         mavenCentral()
     }
+    group = 'org.aya-prover.gdx-box2d'
+    version = '1.0.0'
 }
