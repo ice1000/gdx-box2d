@@ -74,6 +74,10 @@ tasks.register('javadocJar', Jar) {
   from javadoc
 }
 
+javadoc.options {
+  addStringOption('Xdoclint:none', '-quiet')
+}
+
 artifacts {
   archives sourcesJar, javadocJar
 }
