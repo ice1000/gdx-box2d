@@ -42,7 +42,11 @@ public class ChainShape extends Shape {
     return Type.Chain;
   }
 
-  public native void clear(); /*
+  public void clear() {
+    jniClear(addr);
+  }
+
+  private native void jniClear(long addr); /*
     b2ChainShape* chain = (b2ChainShape*)addr;
     chain->Clear();
   */
