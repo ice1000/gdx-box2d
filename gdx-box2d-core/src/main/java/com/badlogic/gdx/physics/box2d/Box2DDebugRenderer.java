@@ -244,15 +244,15 @@ public class Box2DDebugRenderer implements Disposable {
       return;
     }
 
-//		if (fixture.getType() == Type.Chain) {
-//			ChainShape chain = (ChainShape)fixture.getShape();
-//			int vertexCount = chain.getVertexCount();
-//			for (int i = 0; i < vertexCount; i++) {
-//				chain.getVertex(i, vertices[i]);
-//				transform.mul(vertices[i]);
-//			}
-//			drawSolidPolygon(vertices, vertexCount, color, false);
-//		}
+    if (fixture.getType() == Type.Chain) {
+      ChainShape chain = (ChainShape) fixture.getShape();
+      int vertexCount = chain.getVertexCount();
+      for (int i = 0; i < vertexCount; i++) {
+        chain.getVertex(i, vertices[i]);
+        transform.mul(vertices[i]);
+      }
+      drawSolidPolygon(vertices, vertexCount, color, false);
+    }
   }
 
   private final Vector2 f = new Vector2();

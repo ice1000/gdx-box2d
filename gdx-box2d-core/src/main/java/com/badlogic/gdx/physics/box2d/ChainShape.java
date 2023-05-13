@@ -143,6 +143,20 @@ public class ChainShape extends Shape {
 		return chain->m_count;
 	*/
 
+  private static float[] verts = new float[2];
+
+  public void getVertex(int ix, Vector2 vertex) {
+    jniGetVertex(ix, verts);
+    vertex.x = verts[0];
+    vertex.y = verts[1];
+  }
+
+  private native void jniGetVertex(int ix, float[] verts); /* // @off
+		b2ChainShape* chain = (b2ChainShape*)addr;
+		verts[0] = chain->m_vertices[ix].x;
+		verts[1] = chain->m_vertices[ix].y;
+  */ // @on
+
   /**
    * @return false, according to the impl in C++
    */
