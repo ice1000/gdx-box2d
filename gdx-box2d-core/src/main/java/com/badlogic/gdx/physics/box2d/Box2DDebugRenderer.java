@@ -156,13 +156,13 @@ public class Box2DDebugRenderer implements Disposable {
   }
 
   private Color getColorByBody(Body body) {
-    if (body.isEnabled() == false)
+    if (!body.isEnabled())
       return SHAPE_NOT_ACTIVE;
     else if (body.getType() == BodyType.StaticBody)
       return SHAPE_STATIC;
     else if (body.getType() == BodyType.KinematicBody)
       return SHAPE_KINEMATIC;
-    else if (body.isAwake() == false)
+    else if (!body.isAwake())
       return SHAPE_NOT_AWAKE;
     else
       return SHAPE_AWAKE;
@@ -211,7 +211,7 @@ public class Box2DDebugRenderer implements Disposable {
     }
   }
 
-  private static Vector2 t = new Vector2();
+  private static final Vector2 t = new Vector2();
   private static Vector2 axis = new Vector2();
 
   private void drawShape(Fixture fixture, Transform transform, Color color) {

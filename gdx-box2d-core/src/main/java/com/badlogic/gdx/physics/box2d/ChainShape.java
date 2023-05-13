@@ -143,7 +143,7 @@ public class ChainShape extends Shape {
 		return chain->m_count;
 	*/
 
-  private static float[] verts = new float[2];
+  private static final float[] verts = new float[2];
 
   public void getVertex(int ix, Vector2 vertex) {
     jniGetVertex(addr, ix, verts);

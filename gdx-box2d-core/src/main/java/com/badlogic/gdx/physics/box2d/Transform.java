@@ -32,8 +32,8 @@ public class Transform {
 
   public float[] vals = new float[4];
 
-  private Vector2 position = new Vector2();
-  private Vector2 orientation = new Vector2();
+  private final Vector2 position = new Vector2();
+  private final Vector2 orientation = new Vector2();
 
   public Transform() {
 

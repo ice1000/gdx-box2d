@@ -130,7 +130,7 @@ public class PolygonShape extends Shape {
 		return poly->m_count;
 	*/
 
-  private static float[] verts = new float[2];
+  private static final float[] verts = new float[2];
 
   /**
    * Returns the vertex at the given position.

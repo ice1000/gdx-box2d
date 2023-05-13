@@ -33,8 +33,8 @@ public class GearJoint extends Joint {
 #include <box2d/box2d.h>
 	 */
 
-  private Joint joint1;
-  private Joint joint2;
+  private final Joint joint1;
+  private final Joint joint2;
 
   public GearJoint(World world, long addr, Joint joint1, Joint joint2) {
     super(world, addr);

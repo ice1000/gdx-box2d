@@ -41,7 +41,7 @@ public class FixtureDef {
   /**
    * Restitution velocity threshold, usually in m/s. Collisions above this speed have restitution applied (will bounce).
    **/
-  public float restitutionThreshold = 1.0f * Settings.getLengthUnitsPerMeter();
+  public float restitutionThreshold = Settings.getLengthUnitsPerMeter();
 
   /**
    * The density, usually in kg/m^2.
