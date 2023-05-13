@@ -900,6 +900,14 @@ b2ContactFilter defaultFilter;
     jniQueryAABB(addr, lowerX, lowerY, upperX, upperY);
   }
 
+  /**
+   * @deprecated use {@link #queryAABB} instead
+   */
+  @Deprecated
+  public void QueryAABB(QueryCallback callback, float lowerX, float lowerY, float upperX, float upperY) {
+    queryAABB(callback, lowerX, lowerY, upperX, upperY);
+  }
+
   public void queryAABB(QueryCallback callback, Vector2 lower, Vector2 upper) {
     queryAABB(callback, lower.x, lower.y, upper.x, upper.y);
   }
