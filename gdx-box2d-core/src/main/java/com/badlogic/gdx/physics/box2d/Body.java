@@ -854,6 +854,16 @@ inline b2BodyType getBodyType( int type )
 		return body->IsAwake();
 	*/
 
+  @Deprecated
+  public void setActive(boolean newVal) {
+    setEnabled(newVal);
+  }
+
+  @Deprecated
+  public boolean isActive() {
+    return isEnabled();
+  }
+
   /**
    * Allow a body to be disabled. A disabled body is not simulated and cannot
    * be collided with or woken up.
