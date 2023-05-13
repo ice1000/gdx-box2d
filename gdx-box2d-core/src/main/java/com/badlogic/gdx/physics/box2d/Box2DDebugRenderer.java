@@ -223,15 +223,15 @@ public class Box2DDebugRenderer implements Disposable {
       return;
     }
 
-//		if (fixture.getType() == Type.Edge) {
-//			EdgeShape edge = (EdgeShape)fixture.getShape();
-//			edge.getVertex1(vertices[0]);
-//			edge.getVertex2(vertices[1]);
-//			transform.mul(vertices[0]);
-//			transform.mul(vertices[1]);
-//			drawSolidPolygon(vertices, 2, color, true);
-//			return;
-//		}
+    if (fixture.getType() == Type.Edge) {
+      EdgeShape edge = (EdgeShape) fixture.getShape();
+      edge.getVertex1(vertices[0]);
+      edge.getVertex2(vertices[1]);
+      transform.mul(vertices[0]);
+      transform.mul(vertices[1]);
+      drawSolidPolygon(vertices, 2, color, true);
+      return;
+    }
 
     if (fixture.getType() == Type.Polygon) {
       PolygonShape chain = (PolygonShape) fixture.getShape();
