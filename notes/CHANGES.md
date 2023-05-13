@@ -16,3 +16,8 @@ This is an attempt to port box2d 2.4.1 to Java.
 2. Renamed `QueryAABB` into `queryAABB`, provide an overload.
 3. Applied some IntelliJ code inspections.
 4. Tried to port `b2Hull` but didn't find an optimal way.
+
+## 13 May 2023
+
+0. Added missing API back in `ChainShape`
+1. Kept more deprecation redirections
