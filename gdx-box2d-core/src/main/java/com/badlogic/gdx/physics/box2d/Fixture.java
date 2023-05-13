@@ -40,7 +40,9 @@ public class Fixture {
    **/
   private final Filter filter = new Filter();
 
-  /** flag to indicate if filter data needs to be updated with a JNI call **/
+  /**
+   * flag to indicate if filter data needs to be updated with a JNI call
+   **/
   private boolean dirtyFilter = true;
 
   /**
@@ -120,13 +122,13 @@ public class Fixture {
           shape = new CircleShape(shapeAddr);
           break;
         case 1:
-//				shape = new EdgeShape(shapeAddr);
+          shape = new EdgeShape(shapeAddr);
           break;
         case 2:
           shape = new PolygonShape(shapeAddr);
           break;
         case 3:
-//				shape = new ChainShape(shapeAddr);
+          shape = new ChainShape(shapeAddr);
           break;
         default:
           throw new GdxRuntimeException("Unknown shape type!");
