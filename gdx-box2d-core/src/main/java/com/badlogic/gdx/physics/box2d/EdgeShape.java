@@ -48,6 +48,14 @@ public class EdgeShape extends Shape {
   }
 
   /**
+   * @deprecated use {@link #setTwoSided} instead
+   */
+  @Deprecated
+  public void set(Vector2 v1, Vector2 v2) {
+    setTwoSided(v1, v2);
+  }
+
+  /**
    * Set this as an isolated edge. Collision is two-sided.
    */
   public void setTwoSided(float v1X, float v1Y, float v2X, float v2Y) {
