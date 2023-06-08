@@ -14,7 +14,7 @@ dependencies {
     implementation Deps.Desktop.gdx
     implementation Deps.Desktop.Natives.gdx
 
-    implementation fileTree(dir: "${project(':gdx-box2d-box2d').projectDir}/build/libs", includes: ["gdx-box2d-core-natives-dektop.jar"])
+    implementation fileTree(dir: "${project(':gdx-box2d-box2d').projectDir}/build/libs", includes: ["gdx-box2d-box2d-natives-dektop.jar"])
 }
 
 task testDesktop(dependsOn: ':gdx-box2d-box2d:jnigenJarNativesDesktop', type: JavaExec) {

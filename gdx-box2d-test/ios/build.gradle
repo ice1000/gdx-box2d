@@ -33,5 +33,5 @@ dependencies {
 
 	implementation Deps.IOS.robovm
 
-	implementation fileTree(dir: "${project(':gdx-box2d-box2d').buildDir}/libs", includes: ["gdx-box2d-core-natives-ios.jar"])
+	implementation fileTree(dir: "${project(':gdx-box2d-box2d').buildDir}/libs", includes: ["gdx-box2d-box2d-natives-ios.jar"])
 }
