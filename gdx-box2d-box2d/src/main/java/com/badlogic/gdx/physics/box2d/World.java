@@ -168,22 +168,12 @@ b2ContactFilter defaultFilter;
   /**
    * pool for bodies
    **/
-  private final Pool<Body> freeBodies = new Pool<Body>(100, 200) {
-    @Override
-    protected Body newObject() {
-      return new Body(World.this, 0);
-    }
-  };
+  final Pool<Body> freeBodies;
 
   /**
    * pool for fixtures
    **/
-  final Pool<Fixture> freeFixtures = new Pool<Fixture>(100, 200) {
-    @Override
-    protected Fixture newObject() {
-      return new Fixture(null, 0);
-    }
-  };
+  final Pool<Fixture> freeFixtures;
 
   /**
    * the address of the world instance
@@ -193,17 +183,17 @@ b2ContactFilter defaultFilter;
   /**
    * all known bodies
    **/
-  final LongMap<Body> bodies = new LongMap<>(100);
+  final LongMap<Body> bodies;
 
   /**
    * all known fixtures
    **/
-  final LongMap<Fixture> fixtures = new LongMap<>(100);
+  final LongMap<Fixture> fixtures;
 
   /**
    * all known joints
    **/
-  private final LongMap<Joint> joints = new LongMap<>(100);
+  private final LongMap<Joint> joints;
 
   /**
    * Contact filter
@@ -215,7 +205,10 @@ b2ContactFilter defaultFilter;
    **/
   private ContactListener contactListener = null;
 
-  public World(Vector2 gravity) {
+  /**
+   * @deprecated use {@link #World(WorldDef)} instead
+   */
+  @Deprecated public World(Vector2 gravity) {
     this(new WorldDef(gravity));
   }
 
@@ -224,8 +217,9 @@ b2ContactFilter defaultFilter;
    *
    * @param gravity the world gravity vector.
    * @param doSleep improve performance by not simulating inactive bodies.
+   * @deprecated use {@link #World(WorldDef)} instead
    */
-  public World(Vector2 gravity, boolean doSleep) {
+  @Deprecated public World(Vector2 gravity, boolean doSleep) {
     this(new WorldDef(gravity, doSleep));
   }
 
@@ -233,11 +227,27 @@ b2ContactFilter defaultFilter;
     gravity.set(def.gravity);
     addr = newWorld(gravity.x, gravity.y, def.doSleep);
 
+    contactAddrs = new long[def.contactPoolMax];
     contacts.ensureCapacity(contactAddrs.length);
     freeContacts.ensureCapacity(contactAddrs.length);
 
     for (int i = 0; i < contactAddrs.length; i++)
       freeContacts.add(new Contact(this, 0));
+
+    bodies = new LongMap<>(def.initialCapacities);
+    fixtures = new LongMap<>(def.initialCapacities);
+    joints = new LongMap<>(def.initialCapacities);
+
+    freeBodies = new Pool<Body>(def.initialCapacities, def.bodyPoolMax) {
+      @Override protected Body newObject() {
+        return new Body(World.this, 0);
+      }
+    };
+    freeFixtures = new Pool<Fixture>(def.initialCapacities, def.fixturePoolMax) {
+      @Override protected Fixture newObject() {
+        return new Fixture(null, 0);
+      }
+    };
   }
 
   private native long newWorld(float gravityX, float gravityY, boolean doSleep); /*
@@ -944,7 +954,7 @@ b2ContactFilter defaultFilter;
 // /// @warning contacts are
 // b2Contact* GetContactList();
 
-  private long[] contactAddrs = new long[200];
+  private long[] contactAddrs;
   private final Array<Contact> contacts = new Array<>();
   private final Array<Contact> freeContacts = new Array<>();
 
