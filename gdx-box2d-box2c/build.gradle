@@ -16,10 +16,10 @@ jnigen {
   sharedLibName = "gdx-box2d"
 
   all {
-    headerDirs = ["src/box2d-2.4.1/include"]
-    cIncludes = ["*.c", "src/box2d-2.4.1/src/**/*.c"]
+    headerDirs = ["src/box2c/include"]
+    cIncludes = ["*.c", "src/box2c/src/**/*.c"]
     cFlags += " -fvisibility=hidden "
-    cppIncludes = ["*.cpp", "src/box2d-2.4.1/src/**/*.cpp"]
+    cppIncludes = ["*.cpp", "src/box2c/src/**/*.cpp"]
     cppFlags += " -fvisibility=hidden -std=c++11 "
   }
 
