@@ -20,138 +20,137 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
-
 import com.badlogic.gdx.physics.box2d.test.*;
 
 public class Box2DTestCollection extends ApplicationAdapter implements InputProcessor, GestureListener {
-	private final Box2DTest[] tests = {new DebugRendererTest(), new RopeTest(), new CollisionFiltering(), new Chain(), new Bridge(),
-		new SphereStack(), new Cantilever(), new ApplyForce(), new ContinuousTest(), new Prismatic(), new CharacterCollision(),
-		new BodyTypes(), new SimpleTest(), new Pyramid(), new OneSidedPlatform(), new VerticalStack(), new VaryingRestitution(),
-		new ConveyorBelt()};
+  private final Box2DTest[] tests = {new DebugRendererTest(), new RopeTest(), new CollisionFiltering(), new Chain(), new Bridge(),
+      new SphereStack(), new Cantilever(), new ApplyForce(), new ContinuousTest(), new Prismatic(), new CharacterCollision(),
+      new BodyTypes(), new SimpleTest(), new Pyramid(), new OneSidedPlatform(), new VerticalStack(), new VaryingRestitution(),
+      new ConveyorBelt()};
 
-	private int testIndex = 0;
+  private int testIndex = 0;
 
-	private Application app = null;
+  private Application app = null;
 
-	@Override
-	public void render () {
-		tests[testIndex].render();
-	}
+  @Override
+  public void render() {
+    tests[testIndex].render();
+  }
 
-	@Override
-	public void create () {
-		if (this.app == null) {
-			this.app = Gdx.app;
-			Box2DTest test = tests[testIndex];
-			test.create();
-		}
+  @Override
+  public void create() {
+    if (this.app == null) {
+      this.app = Gdx.app;
+      Box2DTest test = tests[testIndex];
+      test.create();
+    }
 
-		InputMultiplexer multiplexer = new InputMultiplexer();
-		multiplexer.addProcessor(this);
-		multiplexer.addProcessor(new GestureDetector(this));
-		Gdx.input.setInputProcessor(multiplexer);
-	}
+    InputMultiplexer multiplexer = new InputMultiplexer();
+    multiplexer.addProcessor(this);
+    multiplexer.addProcessor(new GestureDetector(this));
+    Gdx.input.setInputProcessor(multiplexer);
+  }
 
-	@Override
-	public void dispose () {
-		tests[testIndex].dispose();
-	}
+  @Override
+  public void dispose() {
+    tests[testIndex].dispose();
+  }
 
-	@Override
-	public boolean keyDown (int keycode) {
-		tests[testIndex].keyDown(keycode);
+  @Override
+  public boolean keyDown(int keycode) {
+    tests[testIndex].keyDown(keycode);
 
-		return false;
-	}
+    return false;
+  }
 
-	@Override
-	public boolean keyTyped (char character) {
-		tests[testIndex].keyTyped(character);
-		return false;
-	}
+  @Override
+  public boolean keyTyped(char character) {
+    tests[testIndex].keyTyped(character);
+    return false;
+  }
 
-	@Override
-	public boolean keyUp (int keycode) {
-		tests[testIndex].keyUp(keycode);
-		return false;
-	}
+  @Override
+  public boolean keyUp(int keycode) {
+    tests[testIndex].keyUp(keycode);
+    return false;
+  }
 
-	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
-		tests[testIndex].touchDown(x, y, pointer, button);
-		return false;
-	}
+  @Override
+  public boolean touchDown(int x, int y, int pointer, int button) {
+    tests[testIndex].touchDown(x, y, pointer, button);
+    return false;
+  }
 
-	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
-		tests[testIndex].touchDragged(x, y, pointer);
-		return false;
-	}
+  @Override
+  public boolean touchDragged(int x, int y, int pointer) {
+    tests[testIndex].touchDragged(x, y, pointer);
+    return false;
+  }
 
-	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
-		tests[testIndex].touchUp(x, y, pointer, button);
-		return false;
-	}
+  @Override
+  public boolean touchUp(int x, int y, int pointer, int button) {
+    tests[testIndex].touchUp(x, y, pointer, button);
+    return false;
+  }
 
-	@Override
-	public boolean mouseMoved (int x, int y) {
-		return false;
-	}
+  @Override
+  public boolean mouseMoved(int x, int y) {
+    return false;
+  }
 
-	@Override
-	public boolean scrolled (float amountX, float amountY) {
-		return false;
-	}
+  @Override
+  public boolean scrolled(float amountX, float amountY) {
+    return false;
+  }
 
-	@Override
-	public boolean touchDown (float x, float y, int pointer, int button) {
-		return false;
-	}
+  @Override
+  public boolean touchDown(float x, float y, int pointer, int button) {
+    return false;
+  }
 
-	@Override
-	public boolean tap (float x, float y, int count, int button) {
-		app.log("TestCollection", "disposing test '" + tests[testIndex].getClass().getName());
-		tests[testIndex].dispose();
-		testIndex++;
-		if (testIndex >= tests.length) testIndex = 0;
-		Box2DTest test = tests[testIndex];
-		test.create();
-		app.log("TestCollection", "created test '" + tests[testIndex].getClass().getName());
-		return false;
-	}
+  @Override
+  public boolean tap(float x, float y, int count, int button) {
+    app.log("TestCollection", "disposing test '" + tests[testIndex].getClass().getName());
+    tests[testIndex].dispose();
+    testIndex++;
+    if (testIndex >= tests.length) testIndex = 0;
+    Box2DTest test = tests[testIndex];
+    test.create();
+    app.log("TestCollection", "created test '" + tests[testIndex].getClass().getName());
+    return false;
+  }
 
-	@Override
-	public boolean longPress (float x, float y) {
-		return false;
-	}
+  @Override
+  public boolean longPress(float x, float y) {
+    return false;
+  }
 
-	@Override
-	public boolean fling (float velocityX, float velocityY, int button) {
-		return false;
-	}
+  @Override
+  public boolean fling(float velocityX, float velocityY, int button) {
+    return false;
+  }
 
-	@Override
-	public boolean pan (float x, float y, float deltaX, float deltaY) {
-		return false;
-	}
+  @Override
+  public boolean pan(float x, float y, float deltaX, float deltaY) {
+    return false;
+  }
 
-	@Override
-	public boolean panStop (float x, float y, int pointer, int button) {
-		return false;
-	}
+  @Override
+  public boolean panStop(float x, float y, int pointer, int button) {
+    return false;
+  }
 
-	@Override
-	public boolean zoom (float originalDistance, float currentDistance) {
-		return false;
-	}
+  @Override
+  public boolean zoom(float originalDistance, float currentDistance) {
+    return false;
+  }
 
-	@Override
-	public boolean pinch (Vector2 initialFirstPointer, Vector2 initialSecondPointer, Vector2 firstPointer, Vector2 secondPointer) {
-		return false;
-	}
+  @Override
+  public boolean pinch(Vector2 initialFirstPointer, Vector2 initialSecondPointer, Vector2 firstPointer, Vector2 secondPointer) {
+    return false;
+  }
 
-	@Override
-	public void pinchStop () {
-	}
+  @Override
+  public void pinchStop() {
+  }
 }
