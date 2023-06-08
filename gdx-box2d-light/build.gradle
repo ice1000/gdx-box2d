@@ -7,7 +7,7 @@ compileTestJava.targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories { mavenCentral() }
 dependencies {
-  api project(':gdx-box2d-core')
+  api project(':gdx-box2d-box2d')
   testImplementation Deps.gdx
   testImplementation Deps.Desktop.gdx
   testImplementation Deps.Desktop.Natives.gdx

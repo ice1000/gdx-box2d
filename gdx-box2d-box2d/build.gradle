@@ -5,7 +5,7 @@ buildscript {
     mavenCentral()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
   }
-  dependencies { classpath "com.badlogicgames.gdx:gdx-jnigen-gradle:2.3.1" }
+  dependencies { classpath "com.badlogicgames.gdx:gdx-jnigen-gradle:2.4.0" }
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_7

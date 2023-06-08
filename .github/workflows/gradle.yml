@@ -28,7 +28,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build natives with Gradle
-        run: ./gradlew :gdx-box2d-core:jnigenBuild
+        run: ./gradlew :gdx-box2d-box2d:jnigenBuild
       - name: Upload macOS/iOS natives
         uses: actions/upload-artifact@v2.1.4
         with:
@@ -79,9 +79,9 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build natives with Gradle
-        run: ./gradlew :gdx-box2d-core:jnigenBuild
+        run: ./gradlew :gdx-box2d-box2d:jnigenBuild
       - name: Build Java with Gradle
-        run: ./gradlew :gdx-box2d-core:assemble
+        run: ./gradlew :gdx-box2d-box2d:assemble
       - name: Upload all output libs
         uses: actions/upload-artifact@v2.1.4
         with:

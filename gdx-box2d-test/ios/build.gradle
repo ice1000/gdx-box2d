@@ -16,7 +16,7 @@ ext {
 	mainClassName = "com.badlogic.gdx.physics.box2d.test.IosTest"
 }
 
-build.dependsOn ':gdx-box2d-core:jnigenJarNativesIOS'
+build.dependsOn ':gdx-box2d-box2d:jnigenJarNativesIOS'
 
 launchIPhoneSimulator.dependsOn build
 launchIPadSimulator.dependsOn build
@@ -24,7 +24,7 @@ launchIOSDevice.dependsOn build
 createIPA.dependsOn build
 
 dependencies {
-	implementation project(':gdx-box2d-core')
+	implementation project(':gdx-box2d-box2d')
 	implementation project(':gdx-box2d-test:core')
 
 	implementation Deps.gdx
@@ -33,5 +33,5 @@ dependencies {
 
 	implementation Deps.IOS.robovm
 
-	implementation fileTree(dir: "${project(':gdx-box2d-core').buildDir}/libs", includes: ["gdx-box2d-core-natives-ios.jar"])
+	implementation fileTree(dir: "${project(':gdx-box2d-box2d').buildDir}/libs", includes: ["gdx-box2d-core-natives-ios.jar"])
 }

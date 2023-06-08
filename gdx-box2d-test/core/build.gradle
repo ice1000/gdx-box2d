@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    api project(':gdx-box2d-core')
+    api project(':gdx-box2d-box2d')
 
     implementation Deps.gdx
 }

@@ -5,9 +5,9 @@
 
 **This project needs help on testing and feedbacks!**
 
-So I am using box2d in my game, and I saw box2c. Then, I started following the updates of box2c, but the `union_find` branch has stopped updating right after I started following it (lmao). So I went back to box2d, and realized even for box2d the libGDX binding is very old. So I decided to update the box2d binding to 2.4.1 instead of creating one for box2c.
+This project is (again) a multiplexed higher-order fork of @MobiDevelop's fork of libgdx's own box2d binding, with latest changes from official box2d adapted and the code is modified to support drawing ropes.
 
-This project is again a multiplexed higher-order fork of @MobiDevelop's fork of libgdx's own box2d binding, with latest changes from official box2d adapted and the code is modified to support drawing ropes.
+Regarding box2c: I'll create a separate subproject box2c once Erin figured out the sorting thing in the `union_find` branch.
 
 For development notes, see [notes](/notes/CHANGES.md).
 
@@ -23,7 +23,9 @@ repositories {
 }
 dependencies {
   // box2d
-  implementation "org.aya-prover.gdx-box2d:core:$box2dVersion"
+  implementation "org.aya-prover.gdx-box2d:box2d:$box2dVersion"
+  // box2c, when available
+  implementation "org.aya-prover.gdx-box2d:box2c:$box2dVersion"
   // box2dLight
   implementation "org.aya-prover.gdx-box2d:light:$box2dVersion"
 }

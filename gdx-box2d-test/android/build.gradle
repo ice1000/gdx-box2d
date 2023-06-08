@@ -46,7 +46,7 @@ configurations {
 }
 
 dependencies {
-    implementation project(':gdx-box2d-core')
+    implementation project(':gdx-box2d-box2d')
     implementation project(':gdx-box2d-test:core')
 
     implementation Deps.gdx
@@ -60,7 +60,7 @@ tasks.whenTaskAdded { task ->
     }
 }
 
-task copyOutputs(dependsOn: ':gdx-box2d-core:jnigenJarNativesAndroid') {
+task copyOutputs(dependsOn: ':gdx-box2d-box2d:jnigenJarNativesAndroid') {
     doFirst {
         file("src/main/jniLibs/armeabi/").mkdirs()
         file("src/main/jniLibs/armeabi-v7a/").mkdirs()
@@ -72,7 +72,7 @@ task copyOutputs(dependsOn: ':gdx-box2d-core:jnigenJarNativesAndroid') {
         configurations.getByName("natives").copy().files.each { jar ->
             copyNative(jar)
         }
-        def t = tasks.findByPath(':gdx-box2d-core:jnigenJarNativesAndroid')
+        def t = tasks.findByPath(':gdx-box2d-box2d:jnigenJarNativesAndroid')
         t.getTaskDependencies().each {it.getDependencies(t).each {
             files(it.outputs).each {jar ->
                 copyNative(jar)

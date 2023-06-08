@@ -247,7 +247,7 @@ b2ContactFilter defaultFilter;
 			reportRayFixtureID = env->GetMethodID(worldClass, "reportRayFixture", "(JFFFFF)F" );
 			shouldCollideID = env->GetMethodID( worldClass, "contactFilter", "(JJ)Z");
 		}
-	
+
 		b2World* world = new b2World( b2Vec2( gravityX, gravityY ));
 		world->SetAllowSleeping( doSleep );
 		return (jlong)world;
