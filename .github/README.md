@@ -1,7 +1,7 @@
 # LibGDX style binding for box2d 2.4.1 and box2dLight
 
 [![Java CI with Gradle](https://github.com/ice1000/gdx-box2d/actions/workflows/gradle.yml/badge.svg)](https://github.com/ice1000/gdx-box2d/actions/workflows/gradle.yml)
-![Maven Central](https://img.shields.io/maven-central/v/org.aya-prover.gdx-box2d/core)
+[![Maven Central](https://img.shields.io/maven-central/v/org.aya-prover.gdx-box2d/box2d)](https://repo1.maven.org/maven2/org/aya-prover/gdx-box2d)
 
 **This project needs help on testing and feedbacks!**
 
