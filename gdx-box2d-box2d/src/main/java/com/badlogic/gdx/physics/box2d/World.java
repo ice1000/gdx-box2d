@@ -216,7 +216,7 @@ b2ContactFilter defaultFilter;
   private ContactListener contactListener = null;
 
   public World(Vector2 gravity) {
-    this(gravity, false);
+    this(new WorldDef(gravity));
   }
 
   /**
@@ -226,7 +226,12 @@ b2ContactFilter defaultFilter;
    * @param doSleep improve performance by not simulating inactive bodies.
    */
   public World(Vector2 gravity, boolean doSleep) {
-    addr = newWorld(gravity.x, gravity.y, doSleep);
+    this(new WorldDef(gravity, doSleep));
+  }
+
+  public World(WorldDef def) {
+    gravity.set(def.gravity);
+    addr = newWorld(gravity.x, gravity.y, def.doSleep);
 
     contacts.ensureCapacity(contactAddrs.length);
     freeContacts.ensureCapacity(contactAddrs.length);
