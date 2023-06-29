@@ -992,24 +992,28 @@ b2ContactFilter defaultFilter;
 
   /**
    * @param bodies an Array in which to place all bodies currently in the simulation
+   * @return
    */
-  public void getBodies(Array<Body> bodies) {
+  public Array<Body> getBodies(Array<Body> bodies) {
     bodies.clear();
     bodies.ensureCapacity(this.bodies.size);
     for (Iterator<Body> iter = this.bodies.values(); iter.hasNext(); ) {
       bodies.add(iter.next());
     }
+    return bodies;
   }
 
   /**
    * @param fixtures an Array in which to place all fixtures currently in the simulation
+   * @return
    */
-  public void getFixtures(Array<Fixture> fixtures) {
+  public Array<Fixture> getFixtures(Array<Fixture> fixtures) {
     fixtures.clear();
     fixtures.ensureCapacity(this.fixtures.size);
     for (Iterator<Fixture> iter = this.fixtures.values(); iter.hasNext(); ) {
       fixtures.add(iter.next());
     }
+    return fixtures;
   }
 
   /**

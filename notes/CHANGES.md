@@ -27,3 +27,9 @@ This is an attempt to port box2d 2.4.1 to Java.
 0. Added `WorldDef`, deprecated `World` old constructors.
 1. Updated gdx-jnigen to 2.4.0
 2. Renamed `core` to `box2d` to prepare for `box2c`
+
+## 29 June 2023
+
+On discord, `@lyze237` said they want `getBody` and `getFixture` to return
+the array, so it can be chained conveniently. I think it's a good idea, so
+I added it to my fork.
