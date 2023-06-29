@@ -17,6 +17,10 @@ Since box2dLight also depends on box2d, I've also ported box2dLight to this proj
 
 Let `box2dVersion` be a string, whose value is the string displayed on the maven central badge.
 
+Note that previously, `box2d` was called `core`, but it is **renamed**
+so to align better with the new subproject `box2c`.
+Make sure you use `box2d` now.
+
 ```groovy
 repositories {
   mavenCentral()
