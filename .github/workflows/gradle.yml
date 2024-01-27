@@ -66,7 +66,7 @@ jobs:
       - name: Install Windows compilers
         run: sudo apt-get -yq install g++-mingw-w64-i686 g++-mingw-w64-x86-64
       - name: Install Linux x86 compilers/libraries
-        run: sudo apt-get -yq install gcc-multilib g++-multilib linux-libc-dev:i386 libstdc++-12-dev:i386
+        run: sudo apt-get -yq install gcc-multilib g++-multilib linux-libc-dev-i386-cross libstdc++-12-dev-i386-cross
       - name: Install Linux arm32 compilers/libraries
         run: sudo apt-get -yq install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf
       - name: Install Linux arm64 compilers/libraries
