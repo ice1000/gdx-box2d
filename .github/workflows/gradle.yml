@@ -37,7 +37,7 @@ jobs:
 
   linux:
     needs: macos
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       ORG_GRADLE_PROJECT_GITHUB_USERNAME: ${{ github.actor }}
       ORG_GRADLE_PROJECT_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
