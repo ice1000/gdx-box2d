@@ -154,6 +154,37 @@ public abstract class Shape implements Disposable {
     verts[3] = aabb.upperBound.y;
   */
 
+  public static boolean testOverlap(
+      Shape shapeA, int indexA, Shape shapeB, int indexB,
+      Transform transformA, Transform transformB
+  ) {
+    return jniTestOverlap(shapeA.addr, indexA, shapeB.addr, indexB,
+        transformA.vals[0], transformA.vals[1],
+        transformA.vals[2], transformA.vals[3],
+        transformB.vals[0], transformB.vals[1],
+        transformB.vals[2], transformB.vals[3]);
+  }
+
+  private static native boolean jniTestOverlap(
+      long addrA, int indexA, long addrB, int indexB,
+      float transformAX, float transformAY, float transformAC, float transformAS,
+      float transformBX, float transformBY, float transformBC, float transformBS
+  ); /*
+    b2Shape* shapeA = (b2Shape*)addrA;
+    b2Shape* shapeB = (b2Shape*)addrB;
+    b2Transform tA;
+    tA.p.x = transformAX;
+    tA.p.y = transformAY;
+    tA.q.c = transformAC;
+    tA.q.s = transformAS;
+    b2Transform tB;
+    tB.p.x = transformBX;
+    tB.p.y = transformBY;
+    tB.q.c = transformBC;
+    tB.q.s = transformBS;
+    return b2TestOverlap(shapeA, indexA, shapeB, indexB, tA, tB);
+  */
+
 // /// Cast a ray against this shape.
 // /// @param output the ray-cast results.
 // /// @param input the ray-cast input parameters.
