@@ -1,3 +1,7 @@
+## 27 Jan 2024
+
+Fixed issue #1, fixed CI, upgraded upstream dependencies and the CI images.
+
 ## 11 May 2023
 
 This is an attempt to port box2d 2.4.1 to Java.
