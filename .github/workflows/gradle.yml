@@ -12,8 +12,8 @@ jobs:
   macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -43,8 +43,8 @@ jobs:
       ORG_GRADLE_PROJECT_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       NDK_HOME: /usr/local/lib/android/sdk/ndk-bundle
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
